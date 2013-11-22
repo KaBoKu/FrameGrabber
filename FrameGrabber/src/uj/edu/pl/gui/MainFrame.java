@@ -55,4 +55,12 @@ public class MainFrame extends JFrame {
 		preview.setMnemonic(KeyEvent.VK_P);
 		convert.setMnemonic(KeyEvent.VK_C);
 	}
+	
+	private void SetSlider(){
+		
+	}
+	
+	private void SetRadioButtons(){
+		
+	}
 }
