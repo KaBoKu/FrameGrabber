@@ -7,12 +7,16 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 
 public class MainFrame extends JFrame {
+	private JPanel pane;
+	
 	private JButton stop;
 	private JButton preview;
 	private JButton convert;
@@ -27,6 +31,8 @@ public class MainFrame extends JFrame {
 	private JRadioButton typeOfSource;
 	private JRadioButton typeOfPicture;
 	private JRadioButton typeOfMovie;
+	
+	private JComboBox<String> comboBox;
 	public MainFrame() {
 		super("Frame Grabber");
 		gBC = new GridBagConstraints();
@@ -57,7 +63,12 @@ public class MainFrame extends JFrame {
 	}
 	
 	private void SetSlider(){
+		slider1 = new JSlider(JSlider.HORIZONTAL, 0, 100, 60);
+		slider1.setPaintTrack(true);
+		slider1.setMinimum(0);
+		slider1.setMaximum(255);
 		
+		slider1.setToolTipText("Here u can chose a value");
 	}
 	
 	private void SetRadioButtons(){
