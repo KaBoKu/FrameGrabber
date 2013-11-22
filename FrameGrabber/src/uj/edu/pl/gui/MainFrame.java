@@ -39,6 +39,12 @@ public class MainFrame extends JFrame {
 		gBL = new GridBagLayout();
 		setLayout(gBL);
 		gBC.fill = GridBagConstraints.NONE;
+		pane = new JPanel(gBL);
+		
+		this.SetButtons();
+		this.SetSlider();
+		this.addElementsToFrame();
+		this.add(pane);
 		Dimension dimension = new Dimension(810, 320);
 		this.setSize(dimension);
 		this.setResizable(false);
@@ -72,6 +78,36 @@ public class MainFrame extends JFrame {
 	}
 	
 	private void SetRadioButtons(){
+		
+	}
+	
+	private void addElementsToFrame(){
+		gBC.fill = GridBagConstraints.HORIZONTAL;
+		gBC.gridx = 0;
+		gBC.gridy = 0;
+        gBC.ipadx = 30;
+        gBC.ipady = 10;
+        gBC.anchor = GridBagConstraints.WEST;
+		this.pane.add(this.stop,gBC);
+		gBC.fill = GridBagConstraints.HORIZONTAL;
+		gBC.gridx = 1;
+		gBC.gridy = 0;
+        gBC.ipadx = 30;
+        gBC.ipady = 10;
+        gBC.anchor = GridBagConstraints.WEST;
+        this.pane.add(this.preview,gBC);
+        gBC.gridx = 2;
+		gBC.gridy = 0;
+        gBC.ipadx = 30;
+        gBC.ipady = 10;
+        gBC.anchor = GridBagConstraints.WEST;
+        this.pane.add(this.convert,gBC);
+        gBC.gridx = 0;
+		gBC.gridy = 1;
+        gBC.ipadx = 30;
+        gBC.ipady = 10;
+        gBC.anchor = GridBagConstraints.WEST;
+        this.pane.add(this.slider1,gBC);
 		
 	}
 }
