@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.KeyEvent;
+import java.util.Hashtable;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -76,6 +77,13 @@ public class MainFrame extends JFrame {
 		slider1.setMajorTickSpacing(10);
 		slider1.setPaintTicks(true);
 		slider1.setToolTipText("Here u can chose a value");
+	
+		//Add labes to slider
+		Hashtable labelTable = new Hashtable();
+		labelTable.put( new Integer( 0 ), new JLabel("0") );
+		labelTable.put( new Integer( 255 ), new JLabel("255") );
+		slider1.setLabelTable( labelTable );
+		slider1.setPaintLabels(true);
 	}
 	
 	private void SetRadioButtons(){
