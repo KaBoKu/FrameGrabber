@@ -3,8 +3,10 @@ package uj.edu.pl.gui;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.io.FileFilter;
+import java.io.File;
 import java.util.Hashtable;
 
 import javax.swing.BorderFactory;
@@ -20,7 +22,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class MainFrame extends JFrame {
 	private JPanel pane;
@@ -68,6 +69,7 @@ public class MainFrame extends JFrame {
 
 		this.SetButtons();
 		this.SetSlider();
+		this.setFileChooser();
 		this.SetRadioSource();
 		this.addElementsToFrame();
 		this.add(pane);
@@ -151,10 +153,24 @@ public class MainFrame extends JFrame {
 
 	private void setFileChooser() {
 		fileChooserBut = new JButton("Chosee file");
-		patchChooser = new JFileChooser();
-		FileFilter filter = new FileNameExtensionFilter("c files", "c");
-		patchChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-		patchChooser.setDialogTitle("Choose a file");
+		
+		fileChooserBut.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent ev) {
+				// TODO Auto-generated method stub
+				patchChooser = new JFileChooser();
+				patchChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+				patchChooser.setDialogTitle("Choose a file");
+				 int returnValue = patchChooser.showOpenDialog(null);
+			        if (returnValue == patchChooser.APPROVE_OPTION) {
+			          File selectedFile = patchChooser.getSelectedFile();
+			          System.out.println(selectedFile.getName());
+			        }
+			}
+			
+		});
+		      
 
 	}
 
@@ -173,11 +189,14 @@ public class MainFrame extends JFrame {
 		gBC.ipady = 10;
 		gBC.anchor = GridBagConstraints.WEST;
 		this.pane.add(this.panelRadioBoxSource, gBC);
-		/*
-		 * gBC.gridx = 2; gBC.gridy = 0; gBC.ipadx = 30; gBC.ipady = 10;
-		 * gBC.anchor = GridBagConstraints.WEST; this.pane.add(this.convert,
-		 * gBC);
-		 */
+
+		gBC.gridx = 2;
+		gBC.gridy = 0;
+		gBC.ipadx = 30;
+		gBC.ipady = 10;
+		gBC.anchor = GridBagConstraints.WEST;
+		this.pane.add(this.fileChooserBut, gBC);
+
 		gBC.gridx = 0;
 		gBC.gridy = 1;
 		gBC.ipadx = 30;
