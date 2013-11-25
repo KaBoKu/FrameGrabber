@@ -73,7 +73,8 @@ public class MainFrame extends JFrame {
 		slider1.setPaintTrack(true);
 		slider1.setMinimum(0);
 		slider1.setMaximum(255);
-		
+		slider1.setMajorTickSpacing(10);
+		slider1.setPaintTicks(true);
 		slider1.setToolTipText("Here u can chose a value");
 	}
 	
