@@ -23,19 +23,23 @@ public class MainFrame extends JFrame {
 	private JButton stop;
 	private JButton preview;
 	private JButton convert;
+	private JButton fileChooserBut;
+	
 	private GridBagConstraints gBC;
 	private GridBagLayout gBL;
+	
 	private JSlider slider1;
 	private JLabel sliderLabel;
 	private JLabel patchLabel;
 	private JLabel infoLabel;
 	private JLabel sliderInfoLabel;
+	
 	private ButtonGroup group;
-
 	private JRadioButton aviSource;
 	private JRadioButton jpgSource;
 	private JRadioButton camSource;
 	private ButtonGroup SourceRadioGroup;
+	
 	private JFileChooser patchChooser;
 
 	private JPanel panelSlider;
@@ -135,7 +139,13 @@ public class MainFrame extends JFrame {
 			this.panelRadioBoxSource.add(jpgSource);
 			
 	}
-
+	private void setFileChooser(){
+		fileChooserBut = new JButton("Chosee file");
+		patchChooser = new JFileChooser();
+		patchChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+		
+		
+	}
 	private void addElementsToFrame() {
 		gBC.fill = GridBagConstraints.HORIZONTAL;
 		gBC.gridx = 0;
