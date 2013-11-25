@@ -39,7 +39,9 @@ public class MainFrame extends JFrame {
 	private JFileChooser patchChooser;
 
 	private JPanel panelSlider;
-	private JPanel panelRadioBox;
+	private JPanel panelRadioBoxPicture;
+	private JPanel panelRadioBoxMovie;
+	private JPanel panelRadioBoxSource;
 	private JPanel panelButtons;
 	private JComboBox<String> comboBox;
 
