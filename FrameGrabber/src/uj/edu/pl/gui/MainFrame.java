@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.KeyEvent;
+import java.io.FileFilter;
 import java.util.Hashtable;
 
 import javax.swing.BorderFactory;
@@ -13,9 +14,13 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class MainFrame extends JFrame {
 	private JPanel pane;
@@ -23,24 +28,28 @@ public class MainFrame extends JFrame {
 	private JButton stop;
 	private JButton preview;
 	private JButton convert;
-	private JButton fileChooserBut;
-	
+
+	private JMenuBar menuBar;
+	private JMenu menu;
+	private JMenuItem menuItem;
+
 	private GridBagConstraints gBC;
 	private GridBagLayout gBL;
-	
+
 	private JSlider slider1;
 	private JLabel sliderLabel;
 	private JLabel patchLabel;
 	private JLabel infoLabel;
 	private JLabel sliderInfoLabel;
-	
+
 	private ButtonGroup group;
 	private JRadioButton aviSource;
 	private JRadioButton jpgSource;
 	private JRadioButton camSource;
 	private ButtonGroup SourceRadioGroup;
-	
+
 	private JFileChooser patchChooser;
+	private JButton fileChooserBut;
 
 	private JPanel panelSlider;
 	private JPanel panelRadioBoxPicture;
@@ -69,7 +78,7 @@ public class MainFrame extends JFrame {
 		setVisible(true);
 	}
 
-	private void SetButtons(){
+	private void SetButtons() {
 		panelButtons = new JPanel();
 		this.panelButtons.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createTitledBorder("Jakiœ napis"),
@@ -77,17 +86,17 @@ public class MainFrame extends JFrame {
 		stop = new JButton("Stop");
 		preview = new JButton("Perview");
 		convert = new JButton("Convert");
-		
-		//Tooltips set
+
+		// Tooltips set
 		stop.setToolTipText("Press to stop");
 		preview.setToolTipText("Press to perview");
 		convert.setToolTipText("Press to start convert. It could take long time depends on ur PC");
-		
-		//Memonic set
+
+		// Memonic set
 		stop.setMnemonic(KeyEvent.VK_S);
 		preview.setMnemonic(KeyEvent.VK_P);
 		convert.setMnemonic(KeyEvent.VK_C);
-		
+
 		this.panelButtons.add(stop);
 		this.panelButtons.add(preview);
 		this.panelButtons.add(convert);
@@ -120,32 +129,35 @@ public class MainFrame extends JFrame {
 	}
 
 	private void SetRadioSource() {
-			this.panelRadioBoxSource = new JPanel();
-			this.panelRadioBoxSource.setBorder(BorderFactory.createCompoundBorder(
-					BorderFactory.createTitledBorder("Jakiœ napis"),
-					BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+		this.panelRadioBoxSource = new JPanel();
+		this.panelRadioBoxSource.setBorder(BorderFactory.createCompoundBorder(
+				BorderFactory.createTitledBorder("Jakiœ napis"),
+				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
-			this.aviSource = new JRadioButton("avi");
-			this.camSource = new JRadioButton("Camera");
-			this.jpgSource = new JRadioButton("Picture");
-			
-			this.SourceRadioGroup = new ButtonGroup();
-			this.SourceRadioGroup.add(aviSource);
-			this.SourceRadioGroup.add(camSource);
-			this.SourceRadioGroup.add(jpgSource);
-			
-			this.panelRadioBoxSource.add(aviSource);
-			this.panelRadioBoxSource.add(camSource);
-			this.panelRadioBoxSource.add(jpgSource);
-			
+		this.aviSource = new JRadioButton("avi");
+		this.camSource = new JRadioButton("Camera");
+		this.jpgSource = new JRadioButton("Picture");
+
+		this.SourceRadioGroup = new ButtonGroup();
+		this.SourceRadioGroup.add(aviSource);
+		this.SourceRadioGroup.add(camSource);
+		this.SourceRadioGroup.add(jpgSource);
+
+		this.panelRadioBoxSource.add(aviSource);
+		this.panelRadioBoxSource.add(camSource);
+		this.panelRadioBoxSource.add(jpgSource);
+
 	}
-	private void setFileChooser(){
+
+	private void setFileChooser() {
 		fileChooserBut = new JButton("Chosee file");
 		patchChooser = new JFileChooser();
+		FileFilter filter = new FileNameExtensionFilter("c files", "c");
 		patchChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-		
-		
+		patchChooser.setDialogTitle("Choose a file");
+
 	}
+
 	private void addElementsToFrame() {
 		gBC.fill = GridBagConstraints.HORIZONTAL;
 		gBC.gridx = 0;
@@ -161,12 +173,11 @@ public class MainFrame extends JFrame {
 		gBC.ipady = 10;
 		gBC.anchor = GridBagConstraints.WEST;
 		this.pane.add(this.panelRadioBoxSource, gBC);
-		/*gBC.gridx = 2;
-		gBC.gridy = 0;
-		gBC.ipadx = 30;
-		gBC.ipady = 10;
-		gBC.anchor = GridBagConstraints.WEST;
-		this.pane.add(this.convert, gBC);*/
+		/*
+		 * gBC.gridx = 2; gBC.gridy = 0; gBC.ipadx = 30; gBC.ipady = 10;
+		 * gBC.anchor = GridBagConstraints.WEST; this.pane.add(this.convert,
+		 * gBC);
+		 */
 		gBC.gridx = 0;
 		gBC.gridy = 1;
 		gBC.ipadx = 30;
