@@ -9,6 +9,7 @@ import java.util.Hashtable;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,11 +28,14 @@ public class MainFrame extends JFrame {
 	private JLabel sliderLabel;
 	private JLabel patchLabel;
 	private JLabel infoLabel;
+	private JLabel sliderInfoLabel;
 	private ButtonGroup group;
 	
 	private JRadioButton typeOfSource;
 	private JRadioButton typeOfPicture;
 	private JRadioButton typeOfMovie;
+	
+	private JFileChooser patchChooser;
 	
 	private JComboBox<String> comboBox;
 	public MainFrame() {
