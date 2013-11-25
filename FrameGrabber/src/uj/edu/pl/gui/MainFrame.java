@@ -37,6 +37,9 @@ public class MainFrame extends JFrame {
 	
 	private JFileChooser patchChooser;
 	
+	private JPanel panelSlider;
+	private JPanel panelRadioBox;
+	
 	private JComboBox<String> comboBox;
 	public MainFrame() {
 		super("Frame Grabber");
@@ -74,6 +77,7 @@ public class MainFrame extends JFrame {
 	}
 	
 	private void SetSlider(){
+		
 		slider1 = new JSlider(JSlider.HORIZONTAL, 0, 100, 60);
 		slider1.setPaintTrack(true);
 		slider1.setMinimum(0);
@@ -81,13 +85,15 @@ public class MainFrame extends JFrame {
 		slider1.setMajorTickSpacing(10);
 		slider1.setPaintTicks(true);
 		slider1.setToolTipText("Here u can chose a value");
-	
+		
 		//Add labes to slider
 		Hashtable labelTable = new Hashtable();
 		labelTable.put( new Integer( 0 ), new JLabel("0") );
 		labelTable.put( new Integer( 255 ), new JLabel("255") );
 		slider1.setLabelTable( labelTable );
 		slider1.setPaintLabels(true);
+		
+		this.infoLabel = new JLabel("None");
 	}
 	
 	private void SetRadioButtons(){
