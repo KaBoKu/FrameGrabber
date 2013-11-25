@@ -32,10 +32,10 @@ public class MainFrame extends JFrame {
 	private JLabel sliderInfoLabel;
 	private ButtonGroup group;
 
-	private JRadioButton typeOfSource;
-	private JRadioButton typeOfPicture;
-	private JRadioButton typeOfMovie;
-
+	private JRadioButton aviSource;
+	private JRadioButton jpgSource;
+	private JRadioButton camSource;
+	private ButtonGroup SourceRadioGroup;
 	private JFileChooser patchChooser;
 
 	private JPanel panelSlider;
@@ -55,6 +55,7 @@ public class MainFrame extends JFrame {
 
 		this.SetButtons();
 		this.SetSlider();
+		this.SetRadioSource();
 		this.addElementsToFrame();
 		this.add(pane);
 		Dimension dimension = new Dimension(810, 320);
@@ -114,8 +115,25 @@ public class MainFrame extends JFrame {
 		this.panelSlider.add(infoLabel);
 	}
 
-	private void SetRadioButtons() {
+	private void SetRadioSource() {
+			this.panelRadioBoxSource = new JPanel();
+			this.panelRadioBoxSource.setBorder(BorderFactory.createCompoundBorder(
+					BorderFactory.createTitledBorder("Jakiœ napis"),
+					BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
+			this.aviSource = new JRadioButton("avi");
+			this.camSource = new JRadioButton("Camera");
+			this.jpgSource = new JRadioButton("Picture");
+			
+			this.SourceRadioGroup = new ButtonGroup();
+			this.SourceRadioGroup.add(aviSource);
+			this.SourceRadioGroup.add(camSource);
+			this.SourceRadioGroup.add(jpgSource);
+			
+			this.panelRadioBoxSource.add(aviSource);
+			this.panelRadioBoxSource.add(camSource);
+			this.panelRadioBoxSource.add(jpgSource);
+			
 	}
 
 	private void addElementsToFrame() {
@@ -126,14 +144,14 @@ public class MainFrame extends JFrame {
 		gBC.ipady = 10;
 		gBC.anchor = GridBagConstraints.WEST;
 		this.pane.add(this.panelButtons, gBC);
-		/*gBC.fill = GridBagConstraints.HORIZONTAL;
+		gBC.fill = GridBagConstraints.HORIZONTAL;
 		gBC.gridx = 1;
 		gBC.gridy = 0;
 		gBC.ipadx = 30;
 		gBC.ipady = 10;
 		gBC.anchor = GridBagConstraints.WEST;
-		this.pane.add(this.preview, gBC);
-		gBC.gridx = 2;
+		this.pane.add(this.panelRadioBoxSource, gBC);
+		/*gBC.gridx = 2;
 		gBC.gridy = 0;
 		gBC.ipadx = 30;
 		gBC.ipady = 10;
