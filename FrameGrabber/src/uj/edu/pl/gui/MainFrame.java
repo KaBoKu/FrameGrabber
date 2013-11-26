@@ -62,23 +62,31 @@ public class MainFrame extends JFrame {
 	private JPanel panelButtons;
 	private JPanel panelFileChooser;
 	private JComboBox<String> comboBox;
-	
-	private String borderString; 
+
+	private String borderString;
 
 	public MainFrame() {
 		super("Frame Grabber");
 		
+		this.SetMenu();
 		this.SetButtons();
 		this.SetSlider();
 		this.setFileChooser();
 		this.SetRadioSource();
 		this.addElementsToFrame();
-		//this.add(pane);
+		// this.add(pane);
 		Dimension dimension = new Dimension(810, 320);
 		this.setSize(dimension);
 		this.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
+	}
+
+	private void SetMenu() {
+		this.menuBar = new JMenuBar();
+		this.menu = new JMenu("Info");
+		this.menu.setMnemonic(KeyEvent.VK_I);
+		this.menuBar.add(this.menu);
 	}
 
 	private void SetButtons() {
@@ -154,53 +162,53 @@ public class MainFrame extends JFrame {
 
 	private void setFileChooser() {
 		this.panelFileChooser = new JPanel();
-	    borderString = "None";
+		borderString = "None";
 		this.panelFileChooser.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createTitledBorder(borderString),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-		//TitledBorder tb;
-		//this.panelFileChooser.repaint();
+		// TitledBorder tb;
+		// this.panelFileChooser.repaint();
 		fileChooserBut = new JButton("Chosee file");
 		filePatch = new JLabel("None");
 		filePatch.setToolTipText("Patch to source");
-		
-		fileChooserBut.addActionListener(new ActionListener(){
+
+		fileChooserBut.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent ev) {
 				// TODO Auto-generated method stub
 				patchChooser = new JFileChooser();
-				patchChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+				patchChooser
+						.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 				patchChooser.setDialogTitle("Choose a file");
-				 int returnValue = patchChooser.showOpenDialog(null);
-			        if (returnValue == patchChooser.APPROVE_OPTION) {
-			          File selectedFile = patchChooser.getSelectedFile();
-			          System.out.println(selectedFile.getName());
-			        }
-			   filePatch.setText(patchChooser.getSelectedFile().getAbsolutePath());
-			   borderString = patchChooser.getSelectedFile().getAbsolutePath();
-			   panelFileChooser.setBorder(BorderFactory.createCompoundBorder(
+				int returnValue = patchChooser.showOpenDialog(null);
+				if (returnValue == patchChooser.APPROVE_OPTION) {
+					File selectedFile = patchChooser.getSelectedFile();
+					System.out.println(selectedFile.getName());
+				}
+				filePatch.setText(patchChooser.getSelectedFile()
+						.getAbsolutePath());
+				borderString = patchChooser.getSelectedFile().getAbsolutePath();
+				panelFileChooser.setBorder(BorderFactory.createCompoundBorder(
 						BorderFactory.createTitledBorder(borderString),
 						BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 			}
-			
+
 		});
-		
+
 		this.panelFileChooser.add(this.fileChooserBut);
 		this.panelFileChooser.add(this.filePatch);
-		      
 
 	}
 
 	private void addElementsToFrame() {
-		//Metoda dodaj¹ca przygotowana wczesniej elementy
+		// Metoda dodaj¹ca przygotowana wczesniej elementy
 		gBC = new GridBagConstraints();
 		gBL = new GridBagLayout();
 		setLayout(gBL);
 		gBC.fill = GridBagConstraints.NONE;
 		this.pane = new JPanel(gBL);
-		
-		
+
 		gBC.fill = GridBagConstraints.HORIZONTAL;
 		gBC.gridx = 0;
 		gBC.gridy = 0;
@@ -221,7 +229,7 @@ public class MainFrame extends JFrame {
 		gBC.ipadx = 30;
 		gBC.ipady = 10;
 		gBC.anchor = GridBagConstraints.WEST;
-		//this.pane.add(this.fileChooserBut, gBC);
+		// this.pane.add(this.fileChooserBut, gBC);
 
 		gBC.gridx = 0;
 		gBC.gridy = 1;
@@ -229,15 +237,17 @@ public class MainFrame extends JFrame {
 		gBC.ipady = 10;
 		gBC.anchor = GridBagConstraints.WEST;
 		this.pane.add(this.panelSlider, gBC);
-		
+
 		gBC.gridx = 0;
 		gBC.gridy = 2;
 		gBC.ipadx = 30;
 		gBC.ipady = 10;
 		gBC.anchor = GridBagConstraints.WEST;
 		this.pane.add(this.panelFileChooser, gBC);
-		
+
 		this.add(pane);
+		
+		this.setJMenuBar(this.menuBar);
 
 	}
 }
