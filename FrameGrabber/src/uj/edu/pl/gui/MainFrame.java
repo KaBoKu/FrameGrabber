@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.util.Date;
 import java.util.Hashtable;
 
 import javax.swing.BorderFactory;
@@ -22,6 +23,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
+import javax.swing.border.TitledBorder;
 
 public class MainFrame extends JFrame {
 	private JPanel pane;
@@ -51,28 +53,27 @@ public class MainFrame extends JFrame {
 
 	private JFileChooser patchChooser;
 	private JButton fileChooserBut;
+	private JLabel filePatch;
 
 	private JPanel panelSlider;
 	private JPanel panelRadioBoxPicture;
 	private JPanel panelRadioBoxMovie;
 	private JPanel panelRadioBoxSource;
 	private JPanel panelButtons;
+	private JPanel panelFileChooser;
 	private JComboBox<String> comboBox;
+	
+	private String borderString; 
 
 	public MainFrame() {
 		super("Frame Grabber");
-		gBC = new GridBagConstraints();
-		gBL = new GridBagLayout();
-		setLayout(gBL);
-		gBC.fill = GridBagConstraints.NONE;
-		pane = new JPanel(gBL);
-
+		
 		this.SetButtons();
 		this.SetSlider();
 		this.setFileChooser();
 		this.SetRadioSource();
 		this.addElementsToFrame();
-		this.add(pane);
+		//this.add(pane);
 		Dimension dimension = new Dimension(810, 320);
 		this.setSize(dimension);
 		this.setResizable(false);
@@ -152,7 +153,16 @@ public class MainFrame extends JFrame {
 	}
 
 	private void setFileChooser() {
+		this.panelFileChooser = new JPanel();
+	    borderString = "None";
+		this.panelFileChooser.setBorder(BorderFactory.createCompoundBorder(
+				BorderFactory.createTitledBorder(borderString),
+				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+		//TitledBorder tb;
+		//this.panelFileChooser.repaint();
 		fileChooserBut = new JButton("Chosee file");
+		filePatch = new JLabel("None");
+		filePatch.setToolTipText("Patch to source");
 		
 		fileChooserBut.addActionListener(new ActionListener(){
 
@@ -167,14 +177,30 @@ public class MainFrame extends JFrame {
 			          File selectedFile = patchChooser.getSelectedFile();
 			          System.out.println(selectedFile.getName());
 			        }
+			   filePatch.setText(patchChooser.getSelectedFile().getAbsolutePath());
+			   borderString = patchChooser.getSelectedFile().getAbsolutePath();
+			   panelFileChooser.setBorder(BorderFactory.createCompoundBorder(
+						BorderFactory.createTitledBorder(borderString),
+						BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 			}
 			
 		});
+		
+		this.panelFileChooser.add(this.fileChooserBut);
+		this.panelFileChooser.add(this.filePatch);
 		      
 
 	}
 
 	private void addElementsToFrame() {
+		//Metoda dodaj¹ca przygotowana wczesniej elementy
+		gBC = new GridBagConstraints();
+		gBL = new GridBagLayout();
+		setLayout(gBL);
+		gBC.fill = GridBagConstraints.NONE;
+		this.pane = new JPanel(gBL);
+		
+		
 		gBC.fill = GridBagConstraints.HORIZONTAL;
 		gBC.gridx = 0;
 		gBC.gridy = 0;
@@ -195,7 +221,7 @@ public class MainFrame extends JFrame {
 		gBC.ipadx = 30;
 		gBC.ipady = 10;
 		gBC.anchor = GridBagConstraints.WEST;
-		this.pane.add(this.fileChooserBut, gBC);
+		//this.pane.add(this.fileChooserBut, gBC);
 
 		gBC.gridx = 0;
 		gBC.gridy = 1;
@@ -203,6 +229,15 @@ public class MainFrame extends JFrame {
 		gBC.ipady = 10;
 		gBC.anchor = GridBagConstraints.WEST;
 		this.pane.add(this.panelSlider, gBC);
+		
+		gBC.gridx = 0;
+		gBC.gridy = 2;
+		gBC.ipadx = 30;
+		gBC.ipady = 10;
+		gBC.anchor = GridBagConstraints.WEST;
+		this.pane.add(this.panelFileChooser, gBC);
+		
+		this.add(pane);
 
 	}
 }
