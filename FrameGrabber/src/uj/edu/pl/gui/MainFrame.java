@@ -45,12 +45,18 @@ public class MainFrame extends JFrame {
 	private JLabel infoLabel;
 	private JLabel sliderInfoLabel;
 
-	private ButtonGroup group;
 	private JRadioButton aviSource;
 	private JRadioButton jpgSource;
 	private JRadioButton camSource;
 	private ButtonGroup SourceRadioGroup;
-
+	
+	private ButtonGroup outputGroup;
+	private JRadioButton gifOutput;
+	private JRadioButton jpgOutput;
+	private JRadioButton bmpOutput;
+	private JRadioButton aviOutput;
+	private JRadioButton mpgOutput;
+	
 	private JFileChooser patchChooser;
 	private JButton fileChooserBut;
 	private JLabel filePatch;
@@ -59,6 +65,7 @@ public class MainFrame extends JFrame {
 	private JPanel panelRadioBoxPicture;
 	private JPanel panelRadioBoxMovie;
 	private JPanel panelRadioBoxSource;
+	private JPanel panelOutput;
 	private JPanel panelButtons;
 	private JPanel panelFileChooser;
 	private JComboBox<String> comboBox;
@@ -92,7 +99,7 @@ public class MainFrame extends JFrame {
 	private void SetButtons() {
 		panelButtons = new JPanel();
 		this.panelButtons.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createTitledBorder("Jakiœ napis"),
+				BorderFactory.createTitledBorder("Jakiï¿½ napis"),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 		stop = new JButton("Stop");
 		preview = new JButton("Perview");
@@ -116,7 +123,7 @@ public class MainFrame extends JFrame {
 	private void SetSlider() {
 		this.panelSlider = new JPanel();
 		this.panelSlider.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createTitledBorder("Jakiœ napis"),
+				BorderFactory.createTitledBorder("Jakiï¿½ napis"),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
 		slider1 = new JSlider(JSlider.HORIZONTAL, 0, 100, 60);
@@ -142,7 +149,7 @@ public class MainFrame extends JFrame {
 	private void SetRadioSource() {
 		this.panelRadioBoxSource = new JPanel();
 		this.panelRadioBoxSource.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createTitledBorder("Jakiœ napis"),
+				BorderFactory.createTitledBorder("Jakiï¿½ napis"),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
 		this.aviSource = new JRadioButton("avi");
@@ -202,7 +209,7 @@ public class MainFrame extends JFrame {
 	}
 
 	private void addElementsToFrame() {
-		// Metoda dodaj¹ca przygotowana wczesniej elementy
+		// Metoda dodajï¿½ca przygotowana wczesniej elementy
 		gBC = new GridBagConstraints();
 		gBL = new GridBagLayout();
 		setLayout(gBL);
