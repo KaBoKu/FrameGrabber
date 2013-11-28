@@ -67,7 +67,7 @@ public class MainFrame extends JFrame {
 	private JLabel filePatch;
 	//Panele, ktore beda wrzucane do frame'a
 	private JPanel panelSlider;
-	private JPanel pabelVideoControl;
+	private JPanel panelVideoControl;
 	private JPanel panelRadioBoxPicture;
 	private JPanel panelRadioBoxMovie;
 	private JPanel panelRadioBoxSource;
@@ -127,7 +127,15 @@ public class MainFrame extends JFrame {
 		this.panelButtons.add(preview);
 		this.panelButtons.add(convert);
 	}
-
+	private void SetVideoPlayer(){
+		this.panelVideoControl = new JPanel();
+		this.panelVideoControl.setBorder(BorderFactory.createCompoundBorder(
+				BorderFactory.createTitledBorder("Jaki� napis"),
+				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+		playVideo = new JButton("Play");
+		stopVideo = new JButton("Stop");
+		sliderVideo = new JSlider();
+	}
 	private void SetSlider() {
 		this.panelSlider = new JPanel();
 		this.panelSlider.setBorder(BorderFactory.createCompoundBorder(
