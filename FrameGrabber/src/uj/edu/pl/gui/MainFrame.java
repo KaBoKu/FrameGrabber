@@ -45,12 +45,18 @@ public class MainFrame extends JFrame {
 	private JLabel infoLabel;
 	private JLabel sliderInfoLabel;
 
-	private ButtonGroup group;
 	private JRadioButton aviSource;
 	private JRadioButton jpgSource;
 	private JRadioButton camSource;
 	private ButtonGroup SourceRadioGroup;
-
+	
+	private ButtonGroup groupOutput;
+	private JRadioButton aviOutput;
+	private JRadioButton mpgOutput;
+	private JRadioButton jpgOutput;
+	private JRadioButton gifOutput;
+	private JRadioButton bmpOutput;
+	
 	private JFileChooser patchChooser;
 	private JButton fileChooserBut;
 	private JLabel filePatch;
@@ -59,6 +65,7 @@ public class MainFrame extends JFrame {
 	private JPanel panelRadioBoxPicture;
 	private JPanel panelRadioBoxMovie;
 	private JPanel panelRadioBoxSource;
+	private JPanel panelOutput;
 	private JPanel panelButtons;
 	private JPanel panelFileChooser;
 	private JComboBox<String> comboBox;
@@ -73,6 +80,7 @@ public class MainFrame extends JFrame {
 		this.SetSlider();
 		this.setFileChooser();
 		this.SetRadioSource();
+		this.setOutput();
 		this.addElementsToFrame();
 		// this.add(pane);
 		Dimension dimension = new Dimension(810, 320);
@@ -159,6 +167,32 @@ public class MainFrame extends JFrame {
 		this.panelRadioBoxSource.add(jpgSource);
 
 	}
+	
+	private void setOutput(){
+		this.panelOutput = new JPanel();
+		this.panelOutput.setBorder(BorderFactory.createCompoundBorder(
+				BorderFactory.createTitledBorder("Jakiœ napis"),
+				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+		
+		this.aviOutput = new JRadioButton("avi");
+		this.mpgOutput = new JRadioButton("mpg");
+		this.bmpOutput = new JRadioButton("bmp");
+		this.jpgOutput = new JRadioButton("jpg");
+		this.gifOutput = new JRadioButton("gif");
+		
+		this.groupOutput = new ButtonGroup();
+		this.groupOutput.add(aviOutput);
+		this.groupOutput.add(bmpOutput);
+		this.groupOutput.add(gifOutput);
+		this.groupOutput.add(mpgOutput);
+		this.groupOutput.add(jpgOutput);
+		
+		this.panelOutput.add(aviOutput);
+		this.panelOutput.add(mpgOutput);
+		this.panelOutput.add(jpgOutput);
+		this.panelOutput.add(bmpOutput);
+		this.panelOutput.add(gifOutput);
+	}
 
 	private void setFileChooser() {
 		this.panelFileChooser = new JPanel();
@@ -244,7 +278,15 @@ public class MainFrame extends JFrame {
 		gBC.ipady = 10;
 		gBC.anchor = GridBagConstraints.WEST;
 		this.pane.add(this.panelFileChooser, gBC);
-
+		
+		
+		gBC.gridx = 1;
+		gBC.gridy = 1;
+		gBC.ipadx = 30;
+		gBC.ipady = 10;
+		gBC.anchor = GridBagConstraints.WEST;
+		this.pane.add(this.panelOutput, gBC);
+		
 		this.add(pane);
 		
 		this.setJMenuBar(this.menuBar);
