@@ -133,8 +133,28 @@ public class MainFrame extends JFrame {
 				BorderFactory.createTitledBorder("Jaki� napis"),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 		playVideo = new JButton("Play");
+		playVideo.setToolTipText("Press to play video");
 		stopVideo = new JButton("Stop");
+		stopVideo.setToolTipText("Press to stop");
 		sliderVideo = new JSlider();
+		
+		sliderVideo = new JSlider(JSlider.HORIZONTAL, 0, 100, 60);
+		sliderVideo.setPaintTrack(true);
+		sliderVideo.setMinimum(0);
+		sliderVideo.setMaximum(255);
+		sliderVideo.setMajorTickSpacing(10);
+		sliderVideo.setPaintTicks(true);
+		sliderVideo.setToolTipText("Here u can chose a value");
+		
+		Hashtable labelTable = new Hashtable();
+		labelTable.put(new Integer(0), new JLabel("0"));
+		labelTable.put(new Integer(1000), new JLabel("100%"));
+		sliderVideo.setLabelTable(labelTable);
+		sliderVideo.setPaintLabels(true);
+		
+		this.panelVideoControl.add(playVideo);
+		this.panelVideoControl.add(stopVideo);
+		this.panelVideoControl.add(sliderVideo);
 	}
 	private void SetSlider() {
 		this.panelSlider = new JPanel();
