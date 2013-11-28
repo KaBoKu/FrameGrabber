@@ -50,12 +50,12 @@ public class MainFrame extends JFrame {
 	private JRadioButton camSource;
 	private ButtonGroup SourceRadioGroup;
 	
-	private ButtonGroup groupOutput;
+	private ButtonGroup outputGroup;
+	private JRadioButton gifOutput;
+	private JRadioButton jpgOutput;
+	private JRadioButton bmpOutput;
 	private JRadioButton aviOutput;
 	private JRadioButton mpgOutput;
-	private JRadioButton jpgOutput;
-	private JRadioButton gifOutput;
-	private JRadioButton bmpOutput;
 	
 	private JFileChooser patchChooser;
 	private JButton fileChooserBut;
@@ -80,7 +80,6 @@ public class MainFrame extends JFrame {
 		this.SetSlider();
 		this.setFileChooser();
 		this.SetRadioSource();
-		this.setOutput();
 		this.addElementsToFrame();
 		// this.add(pane);
 		Dimension dimension = new Dimension(810, 320);
@@ -100,7 +99,7 @@ public class MainFrame extends JFrame {
 	private void SetButtons() {
 		panelButtons = new JPanel();
 		this.panelButtons.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createTitledBorder("Jakiœ napis"),
+				BorderFactory.createTitledBorder("Jakiï¿½ napis"),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 		stop = new JButton("Stop");
 		preview = new JButton("Perview");
@@ -124,7 +123,7 @@ public class MainFrame extends JFrame {
 	private void SetSlider() {
 		this.panelSlider = new JPanel();
 		this.panelSlider.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createTitledBorder("Jakiœ napis"),
+				BorderFactory.createTitledBorder("Jakiï¿½ napis"),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
 		slider1 = new JSlider(JSlider.HORIZONTAL, 0, 100, 60);
@@ -150,7 +149,7 @@ public class MainFrame extends JFrame {
 	private void SetRadioSource() {
 		this.panelRadioBoxSource = new JPanel();
 		this.panelRadioBoxSource.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createTitledBorder("Jakiœ napis"),
+				BorderFactory.createTitledBorder("Jakiï¿½ napis"),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
 		this.aviSource = new JRadioButton("avi");
@@ -166,32 +165,6 @@ public class MainFrame extends JFrame {
 		this.panelRadioBoxSource.add(camSource);
 		this.panelRadioBoxSource.add(jpgSource);
 
-	}
-	
-	private void setOutput(){
-		this.panelOutput = new JPanel();
-		this.panelOutput.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createTitledBorder("Jakiœ napis"),
-				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-		
-		this.aviOutput = new JRadioButton("avi");
-		this.mpgOutput = new JRadioButton("mpg");
-		this.bmpOutput = new JRadioButton("bmp");
-		this.jpgOutput = new JRadioButton("jpg");
-		this.gifOutput = new JRadioButton("gif");
-		
-		this.groupOutput = new ButtonGroup();
-		this.groupOutput.add(aviOutput);
-		this.groupOutput.add(bmpOutput);
-		this.groupOutput.add(gifOutput);
-		this.groupOutput.add(mpgOutput);
-		this.groupOutput.add(jpgOutput);
-		
-		this.panelOutput.add(aviOutput);
-		this.panelOutput.add(mpgOutput);
-		this.panelOutput.add(jpgOutput);
-		this.panelOutput.add(bmpOutput);
-		this.panelOutput.add(gifOutput);
 	}
 
 	private void setFileChooser() {
@@ -236,7 +209,7 @@ public class MainFrame extends JFrame {
 	}
 
 	private void addElementsToFrame() {
-		// Metoda dodaj¹ca przygotowana wczesniej elementy
+		// Metoda dodajï¿½ca przygotowana wczesniej elementy
 		gBC = new GridBagConstraints();
 		gBL = new GridBagLayout();
 		setLayout(gBL);
@@ -278,15 +251,7 @@ public class MainFrame extends JFrame {
 		gBC.ipady = 10;
 		gBC.anchor = GridBagConstraints.WEST;
 		this.pane.add(this.panelFileChooser, gBC);
-		
-		
-		gBC.gridx = 1;
-		gBC.gridy = 1;
-		gBC.ipadx = 30;
-		gBC.ipady = 10;
-		gBC.anchor = GridBagConstraints.WEST;
-		this.pane.add(this.panelOutput, gBC);
-		
+
 		this.add(pane);
 		
 		this.setJMenuBar(this.menuBar);
