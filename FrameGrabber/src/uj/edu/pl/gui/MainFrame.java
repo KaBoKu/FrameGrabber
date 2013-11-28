@@ -27,15 +27,20 @@ import javax.swing.border.TitledBorder;
 
 public class MainFrame extends JFrame {
 	private JPanel pane;
-
+	
+	//Buttony do konwersji
 	private JButton stop;
 	private JButton preview;
 	private JButton convert;
-
+	//Buttony do plajera
+	private JButton playVideo;
+	private JButton stopVideo;
+	private JSlider sliderVideo;
+	//Menu
 	private JMenuBar menuBar;
 	private JMenu menu;
 	private JMenuItem menuItem;
-
+	//Leyout
 	private GridBagConstraints gBC;
 	private GridBagLayout gBL;
 
@@ -44,30 +49,32 @@ public class MainFrame extends JFrame {
 	private JLabel patchLabel;
 	private JLabel infoLabel;
 	private JLabel sliderInfoLabel;
-
+	//RadioButtony do wyboru zrodla
 	private JRadioButton aviSource;
 	private JRadioButton jpgSource;
 	private JRadioButton camSource;
 	private ButtonGroup SourceRadioGroup;
-	
+	//Tym razem do outputu
 	private ButtonGroup outputGroup;
 	private JRadioButton gifOutput;
 	private JRadioButton jpgOutput;
 	private JRadioButton bmpOutput;
 	private JRadioButton aviOutput;
 	private JRadioButton mpgOutput;
-	
+	//Wybor sciezki
 	private JFileChooser patchChooser;
 	private JButton fileChooserBut;
 	private JLabel filePatch;
-
+	//Panele, ktore beda wrzucane do frame'a
 	private JPanel panelSlider;
+	private JPanel pabelVideoControl;
 	private JPanel panelRadioBoxPicture;
 	private JPanel panelRadioBoxMovie;
 	private JPanel panelRadioBoxSource;
 	private JPanel panelOutput;
 	private JPanel panelButtons;
 	private JPanel panelFileChooser;
+	
 	private JComboBox<String> comboBox;
 
 	private String borderString;
@@ -80,6 +87,7 @@ public class MainFrame extends JFrame {
 		this.SetSlider();
 		this.setFileChooser();
 		this.SetRadioSource();
+		this.SetOutput();
 		this.addElementsToFrame();
 		// this.add(pane);
 		Dimension dimension = new Dimension(810, 320);
@@ -176,6 +184,20 @@ public class MainFrame extends JFrame {
 		this.jpgOutput = new JRadioButton("jpg");
 		this.gifOutput = new JRadioButton("gif");
 		this.bmpOutput = new JRadioButton("bmp");
+		
+		this.outputGroup = new ButtonGroup();
+		this.outputGroup.add(aviOutput);
+		this.outputGroup.add(mpgOutput);
+		this.outputGroup.add(bmpOutput);
+		this.outputGroup.add(jpgOutput);
+		this.outputGroup.add(gifOutput);
+		
+		this.panelOutput.add(aviOutput);
+		this.panelOutput.add(mpgOutput);
+		this.panelOutput.add(bmpOutput);
+		this.panelOutput.add(jpgOutput);
+		this.panelOutput.add(gifOutput);
+		
 	}
 	private void setFileChooser() {
 		this.panelFileChooser = new JPanel();
@@ -261,6 +283,13 @@ public class MainFrame extends JFrame {
 		gBC.ipady = 10;
 		gBC.anchor = GridBagConstraints.WEST;
 		this.pane.add(this.panelFileChooser, gBC);
+		
+		gBC.gridx = 1;
+		gBC.gridy = 1;
+		gBC.ipadx = 30;
+		gBC.ipady = 10;
+		gBC.anchor = GridBagConstraints.WEST;
+		this.pane.add(this.panelOutput, gBC);
 
 		this.add(pane);
 		
