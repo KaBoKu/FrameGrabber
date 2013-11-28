@@ -84,13 +84,14 @@ public class MainFrame extends JFrame {
 		
 		this.SetMenu();
 		this.SetButtons();
+		this.SetVideoPlayer();
 		this.SetSlider();
 		this.setFileChooser();
 		this.SetRadioSource();
 		this.SetOutput();
 		this.addElementsToFrame();
 		// this.add(pane);
-		Dimension dimension = new Dimension(810, 320);
+		Dimension dimension = new Dimension(810, 350);
 		this.setSize(dimension);
 		this.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -107,7 +108,7 @@ public class MainFrame extends JFrame {
 	private void SetButtons() {
 		panelButtons = new JPanel();
 		this.panelButtons.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createTitledBorder("Jaki� napis"),
+				BorderFactory.createTitledBorder("Set Mode"),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 		stop = new JButton("Stop");
 		preview = new JButton("Perview");
@@ -130,7 +131,7 @@ public class MainFrame extends JFrame {
 	private void SetVideoPlayer(){
 		this.panelVideoControl = new JPanel();
 		this.panelVideoControl.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createTitledBorder("Jaki� napis"),
+				BorderFactory.createTitledBorder("Video Player"),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 		playVideo = new JButton("Play");
 		playVideo.setToolTipText("Press to play video");
@@ -141,14 +142,14 @@ public class MainFrame extends JFrame {
 		sliderVideo = new JSlider(JSlider.HORIZONTAL, 0, 100, 60);
 		sliderVideo.setPaintTrack(true);
 		sliderVideo.setMinimum(0);
-		sliderVideo.setMaximum(255);
+		sliderVideo.setMaximum(1000);
 		sliderVideo.setMajorTickSpacing(10);
 		sliderVideo.setPaintTicks(true);
 		sliderVideo.setToolTipText("Here u can chose a value");
 		
 		Hashtable labelTable = new Hashtable();
 		labelTable.put(new Integer(0), new JLabel("0"));
-		labelTable.put(new Integer(1000), new JLabel("100%"));
+		labelTable.put(new Integer(1000), new JLabel("100"));
 		sliderVideo.setLabelTable(labelTable);
 		sliderVideo.setPaintLabels(true);
 		
@@ -185,7 +186,7 @@ public class MainFrame extends JFrame {
 	private void SetRadioSource() {
 		this.panelRadioBoxSource = new JPanel();
 		this.panelRadioBoxSource.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createTitledBorder("Jaki� napis"),
+				BorderFactory.createTitledBorder("Set Source"),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
 		this.aviSource = new JRadioButton("avi");
@@ -205,7 +206,7 @@ public class MainFrame extends JFrame {
 	private void SetOutput(){
 		this.panelOutput = new JPanel();
 		this.panelOutput.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createTitledBorder("Jaki� napis"),
+				BorderFactory.createTitledBorder("Set Output"),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 		this.aviOutput = new JRadioButton("avi");
 		this.mpgOutput = new JRadioButton("mpg");
@@ -229,7 +230,7 @@ public class MainFrame extends JFrame {
 	}
 	private void setFileChooser() {
 		this.panelFileChooser = new JPanel();
-		borderString = "None";
+		borderString = "Set file or patch";
 		this.panelFileChooser.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createTitledBorder(borderString),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
@@ -318,6 +319,13 @@ public class MainFrame extends JFrame {
 		gBC.ipady = 10;
 		gBC.anchor = GridBagConstraints.WEST;
 		this.pane.add(this.panelOutput, gBC);
+		
+		gBC.gridx = 1;
+		gBC.gridy = 2;
+		gBC.ipadx = 30;
+		gBC.ipady = 10;
+		gBC.anchor = GridBagConstraints.WEST;
+		this.pane.add(this.panelVideoControl, gBC);
 
 		this.add(pane);
 		
