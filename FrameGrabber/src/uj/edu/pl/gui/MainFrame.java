@@ -166,7 +166,17 @@ public class MainFrame extends JFrame {
 		this.panelRadioBoxSource.add(jpgSource);
 
 	}
-
+	private void SetOutput(){
+		this.panelOutput = new JPanel();
+		this.panelOutput.setBorder(BorderFactory.createCompoundBorder(
+				BorderFactory.createTitledBorder("Jaki� napis"),
+				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+		this.aviOutput = new JRadioButton("avi");
+		this.mpgOutput = new JRadioButton("mpg");
+		this.jpgOutput = new JRadioButton("jpg");
+		this.gifOutput = new JRadioButton("gif");
+		this.bmpOutput = new JRadioButton("bmp");
+	}
 	private void setFileChooser() {
 		this.panelFileChooser = new JPanel();
 		borderString = "None";
