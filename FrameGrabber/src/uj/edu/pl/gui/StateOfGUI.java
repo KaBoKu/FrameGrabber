@@ -1,6 +1,7 @@
 package uj.edu.pl.gui;
 
-public class StateOfGUI {
+public enum StateOfGUI {
+	INSTANCE;
 	boolean stopButton;
 	boolean previewButton;
 	boolean convertButton;
@@ -160,6 +161,19 @@ public class StateOfGUI {
 	public void setPatchFile(String patchFile) {
 		this.patchFile = patchFile;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "StateOfGUI [stopButton=" + stopButton + ", previewButton="
+				+ previewButton + ", convertButton=" + convertButton
+				+ ", playVideoButton=" + playVideoButton + ", stopVideoButton="
+				+ stopVideoButton + ", sliderVideo=" + sliderVideo
+				+ ", aviSourceRadio=" + aviSourceRadio + ", jpgSourceRadio="
+				+ jpgSourceRadio + ", camSourceRadio=" + camSourceRadio
+				+ ", gifOutputRadio=" + gifOutputRadio + ", jpgOutputRadio="
+				+ jpgOutputRadio + ", bmpOutputRadio=" + bmpOutputRadio
+				+ ", aviOutputRadio=" + aviOutputRadio + ", mpgOutputRadio="
+				+ mpgOutputRadio + ", RGBValue=" + RGBValue + ", gammaValue="
+				+ gammaValue + ", patchFile=" + patchFile + "]";
+	}
 }

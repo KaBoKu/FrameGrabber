@@ -127,7 +127,9 @@ public class MainFrame extends JFrame {
 		stop = new JButton("Stop");
 		preview = new JButton("Perview");
 		convert = new JButton("Convert");
-
+		
+		stop.;
+		
 		// Tooltips set
 		stop.setToolTipText("Press to stop");
 		preview.setToolTipText("Press to perview");
