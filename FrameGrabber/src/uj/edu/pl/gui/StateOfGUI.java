@@ -1,9 +1,5 @@
 package uj.edu.pl.gui;
 
-import javax.swing.JButton;
-import javax.swing.JRadioButton;
-import javax.swing.JSlider;
-
 public class StateOfGUI {
 	boolean stopButton;
 	boolean previewButton;
@@ -22,4 +18,10 @@ public class StateOfGUI {
 	boolean bmpOutputRadio;
 	boolean aviOutputRadio;
 	boolean mpgOutputRadio;
+	
+	
+	int RGBValue;
+	int gammaValue;
+	
+	String patchFile;
 }
