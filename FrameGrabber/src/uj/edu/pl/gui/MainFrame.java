@@ -1,19 +1,23 @@
 package uj.edu.pl.gui;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.util.Date;
 import java.util.Hashtable;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,7 +27,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
-import javax.swing.border.TitledBorder;
+import javax.swing.Painter;
+import javax.swing.UIDefaults;
 
 public class MainFrame extends JFrame {
 	private JPanel pane;
@@ -91,11 +96,12 @@ public class MainFrame extends JFrame {
 		this.SetOutput();
 		this.addElementsToFrame();
 		// this.add(pane);
-		Dimension dimension = new Dimension(810, 350);
+		Dimension dimension = new Dimension(810, 450);
 		this.setSize(dimension);
 		this.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
+		
 	}
 
 	private void SetMenu() {
@@ -133,6 +139,35 @@ public class MainFrame extends JFrame {
 		this.panelVideoControl.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createTitledBorder("Video Player"),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+		
+		//Klasa do moyfikowania JSlidera. Modyfikacja lokalna
+		UIDefaults sliderDefaults = new UIDefaults();
+		//Modyfikujemy slidera
+		sliderDefaults.put("Slider.thumbWidth", 20);
+        sliderDefaults.put("Slider.thumbHeight", 20);
+        //Modyfikacja wygladu uchwytu
+        sliderDefaults.put("Slider:SliderThumb.backgroundPainter", new Painter<JComponent>() {
+            public void paint(Graphics2D g, JComponent c, int w, int h) {
+                g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g.setStroke(new BasicStroke(2f));
+                g.setColor(Color.RED);
+                g.fillOval(1, 1, w-3, h-3);
+                g.setColor(Color.WHITE);
+                g.drawOval(1, 1, w-3, h-3);
+            }
+        });
+		//Modyfikacja wygladu
+        sliderDefaults.put("Slider:SliderTrack.backgroundPainter", new Painter<JComponent>() {
+            public void paint(Graphics2D g, JComponent c, int w, int h) {
+                g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g.setStroke(new BasicStroke(2f));
+                g.setColor(Color.GRAY);
+                g.fillRoundRect(0, 6, w-1, 8, 8, 8);
+                g.setColor(Color.WHITE);
+                g.drawRoundRect(0, 6, w-1, 8, 8, 8);
+            }
+        });
+		
 		playVideo = new JButton("Play");
 		playVideo.setToolTipText("Press to play video");
 		stopVideo = new JButton("Stop");
@@ -142,16 +177,19 @@ public class MainFrame extends JFrame {
 		sliderVideo = new JSlider(JSlider.HORIZONTAL, 0, 100, 60);
 		sliderVideo.setPaintTrack(true);
 		sliderVideo.setMinimum(0);
-		sliderVideo.setMaximum(1000);
-		sliderVideo.setMajorTickSpacing(10);
+		sliderVideo.setMaximum(100);
+		sliderVideo.setMajorTickSpacing(5);
 		sliderVideo.setPaintTicks(true);
 		sliderVideo.setToolTipText("Here u can chose a value");
 		
 		Hashtable labelTable = new Hashtable();
 		labelTable.put(new Integer(0), new JLabel("0"));
-		labelTable.put(new Integer(1000), new JLabel("100"));
+		labelTable.put(new Integer(100), new JLabel("100"));
 		sliderVideo.setLabelTable(labelTable);
 		sliderVideo.setPaintLabels(true);
+		
+		sliderVideo.putClientProperty("Nimbus.Overrides",sliderDefaults);
+        sliderVideo.putClientProperty("Nimbus.Overrides.InheritDefaults",false);
 		
 		this.panelVideoControl.add(playVideo);
 		this.panelVideoControl.add(stopVideo);
@@ -326,7 +364,7 @@ public class MainFrame extends JFrame {
 		gBC.ipady = 10;
 		gBC.anchor = GridBagConstraints.WEST;
 		this.pane.add(this.panelVideoControl, gBC);
-
+		
 		this.add(pane);
 		
 		this.setJMenuBar(this.menuBar);

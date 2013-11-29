@@ -1,6 +1,7 @@
 package uj.edu.pl.gui;
 
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 public class Main {
 
@@ -12,6 +13,15 @@ public class Main {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
+				for (UIManager.LookAndFeelInfo laf : UIManager.getInstalledLookAndFeels()) {
+                    if ("Nimbus".equals(laf.getName())){
+                        try {
+                            UIManager.setLookAndFeel(laf.getClassName());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
 				new MainFrame();
 			}
 		});
