@@ -54,11 +54,13 @@ public class MainFrame extends JFrame {
 	private JLabel patchLabel;
 	private JLabel infoLabel;
 	private JLabel sliderInfoLabel;
+	
 	//RadioButtony do wyboru zrodla
 	private JRadioButton aviSource;
 	private JRadioButton jpgSource;
 	private JRadioButton camSource;
 	private ButtonGroup SourceRadioGroup;
+	
 	//Tym razem do outputu
 	private ButtonGroup outputGroup;
 	private JRadioButton gifOutput;
@@ -66,6 +68,12 @@ public class MainFrame extends JFrame {
 	private JRadioButton bmpOutput;
 	private JRadioButton aviOutput;
 	private JRadioButton mpgOutput;
+	//RgbRadioButtons
+	private JRadioButton RGBRadioButton;
+	private JRadioButton gammaRadioButton;
+	
+	private ButtonGroup rgbButtonGroup;
+	
 	//Wybor sciezki
 	private JFileChooser patchChooser;
 	private JButton fileChooserBut;
@@ -198,7 +206,7 @@ public class MainFrame extends JFrame {
 	private void SetSlider() {
 		this.panelSlider = new JPanel();
 		this.panelSlider.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createTitledBorder("Jakiï¿½ napis"),
+				BorderFactory.createTitledBorder("Jakiœ½ napis"),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
 		slider1 = new JSlider(JSlider.HORIZONTAL, 0, 100, 60);
