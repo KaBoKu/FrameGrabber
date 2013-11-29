@@ -98,7 +98,7 @@ public class MainFrame extends JFrame {
 		this.SetMenu();
 		this.SetButtons();
 		this.SetVideoPlayer();
-		this.SetSlider();
+		this.SetRGBSlider();
 		this.setFileChooser();
 		this.SetRadioSource();
 		this.SetOutput();
@@ -137,7 +137,9 @@ public class MainFrame extends JFrame {
 		stop.setMnemonic(KeyEvent.VK_S);
 		preview.setMnemonic(KeyEvent.VK_P);
 		convert.setMnemonic(KeyEvent.VK_C);
-
+			
+		stop.setFocusable(false);
+		
 		this.panelButtons.add(stop);
 		this.panelButtons.add(preview);
 		this.panelButtons.add(convert);
@@ -187,7 +189,7 @@ public class MainFrame extends JFrame {
 		sliderVideo.setMinimum(0);
 		sliderVideo.setMaximum(100);
 		sliderVideo.setMajorTickSpacing(5);
-		sliderVideo.setPaintTicks(true);
+		//sliderVideo.setPaintTicks(true);
 		sliderVideo.setToolTipText("Here u can chose a value");
 		
 		Hashtable labelTable = new Hashtable();
@@ -199,16 +201,19 @@ public class MainFrame extends JFrame {
 		sliderVideo.putClientProperty("Nimbus.Overrides",sliderDefaults);
         sliderVideo.putClientProperty("Nimbus.Overrides.InheritDefaults",false);
 		
-		this.panelVideoControl.add(playVideo);
+        this.panelVideoControl.add(sliderVideo);
+        this.panelVideoControl.add(playVideo);
 		this.panelVideoControl.add(stopVideo);
-		this.panelVideoControl.add(sliderVideo);
+		
 	}
-	private void SetSlider() {
+	private void SetRGBSlider() {
 		this.panelSlider = new JPanel();
 		this.panelSlider.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createTitledBorder("Jakiœ½ napis"),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-
+		
+		
+		
 		slider1 = new JSlider(JSlider.HORIZONTAL, 0, 100, 60);
 		slider1.setPaintTrack(true);
 		slider1.setMinimum(0);
@@ -224,9 +229,18 @@ public class MainFrame extends JFrame {
 		slider1.setLabelTable(labelTable);
 		slider1.setPaintLabels(true);
 
+		this.RGBRadioButton = new JRadioButton("RGB");
+		this.gammaRadioButton = new JRadioButton("Gamma");
+		this.rgbButtonGroup = new ButtonGroup();
+		this.rgbButtonGroup.add(RGBRadioButton);
+		this.rgbButtonGroup.add(gammaRadioButton);
+		
+
 		this.infoLabel = new JLabel("None");
 		this.panelSlider.add(slider1);
 		this.panelSlider.add(infoLabel);
+		this.panelSlider.add(RGBRadioButton);
+		this.panelSlider.add(gammaRadioButton);
 	}
 
 	private void SetRadioSource() {
