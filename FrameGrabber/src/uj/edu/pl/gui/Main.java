@@ -23,9 +23,13 @@ public class Main {
                     }
                 }
 				new MainFrame();
+				//Czytanie stanu GUI
+				Thread t = new Thread(new ThreadReadState());
+				t.start();
 			}
 		});
 	}
+	
 
 }
 

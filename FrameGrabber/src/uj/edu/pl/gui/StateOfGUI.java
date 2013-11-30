@@ -26,6 +26,8 @@ public enum StateOfGUI {
 	
 	String patchFile;
 
+	
+	
 	public boolean isStopButton() {
 		return stopButton;
 	}
@@ -176,4 +178,6 @@ public enum StateOfGUI {
 				+ mpgOutputRadio + ", RGBValue=" + RGBValue + ", gammaValue="
 				+ gammaValue + ", patchFile=" + patchFile + "]";
 	}
+	
+	
 }

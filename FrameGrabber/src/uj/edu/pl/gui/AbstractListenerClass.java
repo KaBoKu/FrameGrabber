@@ -2,12 +2,13 @@ package uj.edu.pl.gui;
 
 import java.awt.event.ActionListener;
 
+//Klasa abstrakcyja dla actionlistnenerow
 public abstract class AbstractListenerClass implements ActionListener{
-	private StateOfGUI sOG;
-	private MainFrame mF;
+	protected StateOfGUI sOG;
+	protected MainFrame mF;
 	
-	public AbstractListenerClass(StateOfGUI sOG, MainFrame mF){
-		this.sOG = sOG;
+	public AbstractListenerClass(MainFrame mF){
+		this.sOG = StateOfGUI.INSTANCE;
 		this.mF = mF;
 	}
 }

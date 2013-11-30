@@ -87,6 +87,7 @@ public class MainFrame extends JFrame {
 	private JPanel panelOutput;
 	private JPanel panelButtons;
 	private JPanel panelFileChooser;
+	private JPanel panelStatusBar;
 	
 	private JComboBox<String> comboBox;
 
@@ -128,7 +129,7 @@ public class MainFrame extends JFrame {
 		preview = new JButton("Perview");
 		convert = new JButton("Convert");
 		
-		stop.;
+		stop.addActionListener(new ActionLStop(this));
 		
 		// Tooltips set
 		stop.setToolTipText("Press to stop");
