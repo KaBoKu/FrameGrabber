@@ -16,6 +16,15 @@ public class ActionLConvert extends AbstractListenerClass{
 		// TODO Auto-generated method stub
 		super.sOG.setConvertButton(true);
 		super.mF.getFileChooserBut().setEnabled(false);
+		super.mF.getAviOutput().setEnabled(false);
+		super.mF.getAviSource().setEnabled(false);
+		super.mF.getBmpOutput().setEnabled(false);
+		super.mF.getJpgSource().setEnabled(false);
+		super.mF.getJpgOutput().setEnabled(false);
+		super.mF.getCamSource().setEnabled(false);
+		super.mF.getMpgOutput().setEnabled(false);
+		super.mF.getRGBRadioButton().setEnabled(false);
+		super.mF.getGammaRadioButton().setEnabled(false);
 	}
 
 }
