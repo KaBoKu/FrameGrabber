@@ -94,10 +94,12 @@ public class MainFrame extends JFrame {
 	private JComboBox<String> comboBox;
 
 	private String borderString;
-
+	
+	private StateOfGUI sOG;
+	
 	public MainFrame() {
 		super("Frame Grabber");
-		
+		sOG = StateOfGUI.INSTANCE;
 		this.SetMenu();
 		this.SetButtons();
 		this.SetVideoPlayer();
@@ -111,8 +113,10 @@ public class MainFrame extends JFrame {
 		this.setSize(dimension);
 		this.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		setVisible(true);
 		
+	
 	}
 
 	private void SetMenu() {
@@ -325,6 +329,9 @@ public class MainFrame extends JFrame {
 				panelFileChooser.setBorder(BorderFactory.createCompoundBorder(
 						BorderFactory.createTitledBorder(borderString),
 						BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+				
+				sOG.setPatchFile(patchChooser.getSelectedFile()
+						.getAbsolutePath());
 			}
 
 		});
