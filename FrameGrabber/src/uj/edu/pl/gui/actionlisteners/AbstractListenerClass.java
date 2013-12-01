@@ -1,6 +1,9 @@
-package uj.edu.pl.gui;
+package uj.edu.pl.gui.actionlisteners;
 
 import java.awt.event.ActionListener;
+
+import uj.edu.pl.gui.MainFrame;
+import uj.edu.pl.gui.StateOfGUI;
 
 //Klasa abstrakcyja dla actionlistnenerow
 public abstract class AbstractListenerClass implements ActionListener{

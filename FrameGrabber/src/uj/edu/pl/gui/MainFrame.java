@@ -30,6 +30,8 @@ import javax.swing.JSlider;
 import javax.swing.Painter;
 import javax.swing.UIDefaults;
 
+import uj.edu.pl.gui.actionlisteners.ActionLStop;
+
 public class MainFrame extends JFrame {
 	private JPanel pane;
 	

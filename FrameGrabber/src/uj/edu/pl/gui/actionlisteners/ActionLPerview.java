@@ -1,6 +1,8 @@
-package uj.edu.pl.gui;
+package uj.edu.pl.gui.actionlisteners;
 
 import java.awt.event.ActionEvent;
+
+import uj.edu.pl.gui.MainFrame;
 
 public class ActionLPerview extends AbstractListenerClass{
 
