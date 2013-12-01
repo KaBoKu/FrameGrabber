@@ -245,7 +245,18 @@ public class MainFrame extends JFrame {
 		slider1.setMajorTickSpacing(10);
 		slider1.setPaintTicks(true);
 		slider1.setToolTipText("Here u can chose a value");
-
+		slider1.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				if (RGBRadioButton.isSelected()) {
+					System.out.println("RGB: " + slider1.getValue());
+					sOG.setRGBValue(slider1.getValue());
+				}
+				if (gammaRadioButton.isSelected()) {
+					System.out.println("Gamma: " + slider1.getValue());
+					sOG.setGammaValue(slider1.getValue());
+				}
+			}
+		});
 		// Add labes to slider
 		Hashtable labelTable = new Hashtable();
 		labelTable.put(new Integer(0), new JLabel("0"));
