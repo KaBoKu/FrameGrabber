@@ -162,6 +162,8 @@ public class MainFrame extends JFrame {
 		this.panelButtons.add(convert);
 	}
 
+	
+
 	private void SetVideoPlayer() {
 		this.panelVideoControl = new JPanel();
 		this.panelVideoControl.setBorder(BorderFactory.createCompoundBorder(
@@ -548,5 +550,38 @@ public class MainFrame extends JFrame {
 
 	public void setFileChooserBut(JButton fileChooserBut) {
 		this.fileChooserBut = fileChooserBut;
-	}	
+	}
+	
+	public JButton getPreview() {
+		return preview;
+	}
+
+	public void setPreview(JButton preview) {
+		this.preview = preview;
+	}
+
+	public JSlider getSliderVideo() {
+		return sliderVideo;
+	}
+
+	public void setSliderVideo(JSlider sliderVideo) {
+		this.sliderVideo = sliderVideo;
+	}
+
+	public JButton getPlayVideo() {
+		return playVideo;
+	}
+
+	public void setPlayVideo(JButton playVideo) {
+		this.playVideo = playVideo;
+	}
+
+	public JButton getStopVideo() {
+		return stopVideo;
+	}
+
+	public void setStopVideo(JButton stopVideo) {
+		this.stopVideo = stopVideo;
+	}
+	
 }

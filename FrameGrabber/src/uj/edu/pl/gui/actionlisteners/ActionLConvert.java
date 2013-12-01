@@ -25,6 +25,8 @@ public class ActionLConvert extends AbstractListenerClass{
 		super.mF.getMpgOutput().setEnabled(false);
 		super.mF.getRGBRadioButton().setEnabled(false);
 		super.mF.getGammaRadioButton().setEnabled(false);
+		super.mF.getPreview().setEnabled(false);
+		
 	}
 
 }
