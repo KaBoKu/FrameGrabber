@@ -32,6 +32,7 @@ import javax.swing.UIDefaults;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import uj.edu.pl.gui.actionlisteners.ActionLConvert;
 import uj.edu.pl.gui.actionlisteners.ActionLStop;
 
 public class MainFrame extends JFrame {
@@ -118,7 +119,7 @@ public class MainFrame extends JFrame {
 		this.setSize(dimension);
 		this.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		
 		setVisible(true);
 
 	}
@@ -150,7 +151,10 @@ public class MainFrame extends JFrame {
 		stop.setMnemonic(KeyEvent.VK_S);
 		preview.setMnemonic(KeyEvent.VK_P);
 		convert.setMnemonic(KeyEvent.VK_C);
-
+		
+		//Podpinamy listnenery
+		convert.addActionListener(new ActionLConvert(this));
+		
 		stop.setFocusable(false);
 
 		this.panelButtons.add(stop);
@@ -449,4 +453,100 @@ public class MainFrame extends JFrame {
 		this.setJMenuBar(this.menuBar);
 
 	}
+
+	public JButton getConvert() {
+		return convert;
+	}
+
+	public void setConvert(JButton convert) {
+		this.convert = convert;
+	}
+
+	public JRadioButton getAviSource() {
+		return aviSource;
+	}
+
+	public void setAviSource(JRadioButton aviSource) {
+		this.aviSource = aviSource;
+	}
+
+	public JRadioButton getJpgSource() {
+		return jpgSource;
+	}
+
+	public void setJpgSource(JRadioButton jpgSource) {
+		this.jpgSource = jpgSource;
+	}
+
+	public JRadioButton getCamSource() {
+		return camSource;
+	}
+
+	public void setCamSource(JRadioButton camSource) {
+		this.camSource = camSource;
+	}
+
+	public JRadioButton getGifOutput() {
+		return gifOutput;
+	}
+
+	public void setGifOutput(JRadioButton gifOutput) {
+		this.gifOutput = gifOutput;
+	}
+
+	public JRadioButton getJpgOutput() {
+		return jpgOutput;
+	}
+
+	public void setJpgOutput(JRadioButton jpgOutput) {
+		this.jpgOutput = jpgOutput;
+	}
+
+	public JRadioButton getBmpOutput() {
+		return bmpOutput;
+	}
+
+	public void setBmpOutput(JRadioButton bmpOutput) {
+		this.bmpOutput = bmpOutput;
+	}
+
+	public JRadioButton getAviOutput() {
+		return aviOutput;
+	}
+
+	public void setAviOutput(JRadioButton aviOutput) {
+		this.aviOutput = aviOutput;
+	}
+
+	public JRadioButton getMpgOutput() {
+		return mpgOutput;
+	}
+
+	public void setMpgOutput(JRadioButton mpgOutput) {
+		this.mpgOutput = mpgOutput;
+	}
+
+	public JRadioButton getRGBRadioButton() {
+		return RGBRadioButton;
+	}
+
+	public void setRGBRadioButton(JRadioButton rGBRadioButton) {
+		RGBRadioButton = rGBRadioButton;
+	}
+
+	public JRadioButton getGammaRadioButton() {
+		return gammaRadioButton;
+	}
+
+	public void setGammaRadioButton(JRadioButton gammaRadioButton) {
+		this.gammaRadioButton = gammaRadioButton;
+	}
+
+	public JButton getFileChooserBut() {
+		return fileChooserBut;
+	}
+
+	public void setFileChooserBut(JButton fileChooserBut) {
+		this.fileChooserBut = fileChooserBut;
+	}	
 }

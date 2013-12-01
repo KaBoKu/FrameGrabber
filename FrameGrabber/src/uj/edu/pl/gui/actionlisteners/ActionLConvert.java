@@ -15,6 +15,7 @@ public class ActionLConvert extends AbstractListenerClass{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		super.sOG.setConvertButton(true);
+		super.mF.getFileChooserBut().setEnabled(false);
 	}
 
 }
