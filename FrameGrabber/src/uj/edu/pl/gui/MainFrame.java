@@ -1,6 +1,7 @@
 package uj.edu.pl.gui;
 
 import java.awt.BasicStroke;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -62,6 +63,7 @@ public class MainFrame extends JFrame {
 	private JLabel patchLabel;
 	private JLabel infoLabel;
 	private JLabel sliderInfoLabel;
+	private JLabel statusLabel;
 
 	// RadioButtony do wyboru zrodla
 	private JRadioButton aviSource;
@@ -113,6 +115,7 @@ public class MainFrame extends JFrame {
 		this.setFileChooser();
 		this.SetRadioSource();
 		this.SetOutput();
+		this.SetStatusBar();
 		this.addElementsToFrame();
 		// this.add(pane);
 		Dimension dimension = new Dimension(810, 450);
@@ -161,8 +164,6 @@ public class MainFrame extends JFrame {
 		this.panelButtons.add(preview);
 		this.panelButtons.add(convert);
 	}
-
-	
 
 	private void SetVideoPlayer() {
 		this.panelVideoControl = new JPanel();
@@ -392,6 +393,44 @@ public class MainFrame extends JFrame {
 
 	}
 
+	
+	private void SetStatusBar(){
+		this.panelStatusBar = new JPanel();
+		panelStatusBar.setLayout(new BorderLayout(2,2));
+		statusLabel = new JLabel();
+		statusLabel.setBorder(BorderFactory.createLoweredBevelBorder());
+		statusLabel.setForeground(Color.black);
+		panelStatusBar.add(BorderLayout.CENTER,statusLabel);
+		
+		/*class StatusBar extends JPanel
+		{
+		private JLabel statusLabel;
+		public StatusBar()
+		{
+		setLayout(new BorderLayout(2, 2));
+		statusLabel = new JLabel("Ready");
+		statusLabel.setBorder(BorderFactory.createLoweredBevelBorder());
+		statusLabel.setForeground(Color.black);
+		add(BorderLayout.CENTER, statusLabel);
+		JLabel dummyLabel = new JLabel(" ");
+		dummyLabel.setBorder(BorderFactory.createLoweredBevelBorder());
+		add(BorderLayout.EAST, dummyLabel);
+		}
+		public void setStatus(String status)
+		{
+		if (status.equals(""))
+		statusLabel.setText("Ready");
+		else
+		statusLabel.setText(status);
+		}
+		public String getStatus()
+		{
+		return statusLabel.getText();
+		}
+		}*/
+		
+	}
+	
 	private void addElementsToFrame() {
 		// Metoda dodaj�ca przygotowana wczesniej elementy
 		gBC = new GridBagConstraints();
@@ -449,7 +488,14 @@ public class MainFrame extends JFrame {
 		gBC.ipady = 10;
 		gBC.anchor = GridBagConstraints.WEST;
 		this.pane.add(this.panelVideoControl, gBC);
-
+		
+		gBC.gridx = 1;
+		gBC.gridy = 3;
+		gBC.ipadx = 30;
+		gBC.ipady = 10;
+		gBC.anchor = GridBagConstraints.WEST;
+		this.pane.add(this.panelStatusBar, gBC);
+		
 		this.add(pane);
 
 		this.setJMenuBar(this.menuBar);
