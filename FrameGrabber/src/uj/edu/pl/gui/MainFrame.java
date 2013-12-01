@@ -29,58 +29,63 @@ import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 import javax.swing.Painter;
 import javax.swing.UIDefaults;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import uj.edu.pl.gui.actionlisteners.ActionLStop;
 
 public class MainFrame extends JFrame {
 	private JPanel pane;
-	
-	//Buttony do konwersji
+
+	// Buttony do konwersji
 	private JButton stop;
 	private JButton preview;
 	private JButton convert;
-	//Buttony do plajera
+	// Buttony do plajera
 	private JButton playVideo;
 	private JButton stopVideo;
 	private JSlider sliderVideo;
-	//Menu
+	private int percentSliderVideo;
+	// Menu
 	private JMenuBar menuBar;
 	private JMenu menu;
 	private JMenuItem menuItem;
-	//Leyout
+	// Leyout
 	private GridBagConstraints gBC;
 	private GridBagLayout gBL;
 
 	private JSlider slider1;
+	private int valueOfRGBSlider;
+	private int valueOfGammaSlider;
 	private JLabel sliderLabel;
 	private JLabel patchLabel;
 	private JLabel infoLabel;
 	private JLabel sliderInfoLabel;
-	
-	//RadioButtony do wyboru zrodla
+
+	// RadioButtony do wyboru zrodla
 	private JRadioButton aviSource;
 	private JRadioButton jpgSource;
 	private JRadioButton camSource;
 	private ButtonGroup SourceRadioGroup;
-	
-	//Tym razem do outputu
+
+	// Tym razem do outputu
 	private ButtonGroup outputGroup;
 	private JRadioButton gifOutput;
 	private JRadioButton jpgOutput;
 	private JRadioButton bmpOutput;
 	private JRadioButton aviOutput;
 	private JRadioButton mpgOutput;
-	//RgbRadioButtons
+	// RgbRadioButtons
 	private JRadioButton RGBRadioButton;
 	private JRadioButton gammaRadioButton;
-	
+
 	private ButtonGroup rgbButtonGroup;
-	
-	//Wybor sciezki
+
+	// Wybor sciezki
 	private JFileChooser patchChooser;
 	private JButton fileChooserBut;
 	private JLabel filePatch;
-	//Panele, ktore beda wrzucane do frame'a
+	// Panele, ktore beda wrzucane do frame'a
 	private JPanel panelSlider;
 	private JPanel panelVideoControl;
 	private JPanel panelRadioBoxPicture;
@@ -90,13 +95,13 @@ public class MainFrame extends JFrame {
 	private JPanel panelButtons;
 	private JPanel panelFileChooser;
 	private JPanel panelStatusBar;
-	
+
 	private JComboBox<String> comboBox;
 
 	private String borderString;
-	
+
 	private StateOfGUI sOG;
-	
+
 	public MainFrame() {
 		super("Frame Grabber");
 		sOG = StateOfGUI.INSTANCE;
@@ -113,10 +118,9 @@ public class MainFrame extends JFrame {
 		this.setSize(dimension);
 		this.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		setVisible(true);
-		
-	
+
 	}
 
 	private void SetMenu() {
@@ -134,9 +138,9 @@ public class MainFrame extends JFrame {
 		stop = new JButton("Stop");
 		preview = new JButton("Perview");
 		convert = new JButton("Convert");
-		
+
 		stop.addActionListener(new ActionLStop(this));
-		
+
 		// Tooltips set
 		stop.setToolTipText("Press to stop");
 		preview.setToolTipText("Press to perview");
@@ -146,83 +150,94 @@ public class MainFrame extends JFrame {
 		stop.setMnemonic(KeyEvent.VK_S);
 		preview.setMnemonic(KeyEvent.VK_P);
 		convert.setMnemonic(KeyEvent.VK_C);
-			
+
 		stop.setFocusable(false);
-		
+
 		this.panelButtons.add(stop);
 		this.panelButtons.add(preview);
 		this.panelButtons.add(convert);
 	}
-	private void SetVideoPlayer(){
+
+	private void SetVideoPlayer() {
 		this.panelVideoControl = new JPanel();
 		this.panelVideoControl.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createTitledBorder("Video Player"),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-		
-		//Klasa do moyfikowania JSlidera. Modyfikacja lokalna
+
+		// Klasa do moyfikowania JSlidera. Modyfikacja lokalna
 		UIDefaults sliderDefaults = new UIDefaults();
-		//Modyfikujemy slidera
+		// Modyfikujemy slidera
 		sliderDefaults.put("Slider.thumbWidth", 20);
-        sliderDefaults.put("Slider.thumbHeight", 20);
-        //Modyfikacja wygladu uchwytu
-        sliderDefaults.put("Slider:SliderThumb.backgroundPainter", new Painter<JComponent>() {
-            public void paint(Graphics2D g, JComponent c, int w, int h) {
-                g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                g.setStroke(new BasicStroke(2f));
-                g.setColor(Color.RED);
-                g.fillOval(1, 1, w-3, h-3);
-                g.setColor(Color.WHITE);
-                g.drawOval(1, 1, w-3, h-3);
-            }
-        });
-		//Modyfikacja wygladu
-        sliderDefaults.put("Slider:SliderTrack.backgroundPainter", new Painter<JComponent>() {
-            public void paint(Graphics2D g, JComponent c, int w, int h) {
-                g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                g.setStroke(new BasicStroke(2f));
-                g.setColor(Color.GRAY);
-                g.fillRoundRect(0, 6, w-1, 8, 8, 8);
-                g.setColor(Color.WHITE);
-                g.drawRoundRect(0, 6, w-1, 8, 8, 8);
-            }
-        });
-		
+		sliderDefaults.put("Slider.thumbHeight", 20);
+		// Modyfikacja wygladu uchwytu
+		sliderDefaults.put("Slider:SliderThumb.backgroundPainter",
+				new Painter<JComponent>() {
+					public void paint(Graphics2D g, JComponent c, int w, int h) {
+						g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+								RenderingHints.VALUE_ANTIALIAS_ON);
+						g.setStroke(new BasicStroke(2f));
+						g.setColor(Color.RED);
+						g.fillOval(1, 1, w - 3, h - 3);
+						g.setColor(Color.WHITE);
+						g.drawOval(1, 1, w - 3, h - 3);
+					}
+				});
+		// Modyfikacja wygladu
+		sliderDefaults.put("Slider:SliderTrack.backgroundPainter",
+				new Painter<JComponent>() {
+					public void paint(Graphics2D g, JComponent c, int w, int h) {
+						g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+								RenderingHints.VALUE_ANTIALIAS_ON);
+						g.setStroke(new BasicStroke(2f));
+						g.setColor(Color.GRAY);
+						g.fillRoundRect(0, 6, w - 1, 8, 8, 8);
+						g.setColor(Color.WHITE);
+						g.drawRoundRect(0, 6, w - 1, 8, 8, 8);
+					}
+				});
+
 		playVideo = new JButton("Play");
 		playVideo.setToolTipText("Press to play video");
 		stopVideo = new JButton("Stop");
 		stopVideo.setToolTipText("Press to stop");
 		sliderVideo = new JSlider();
-		
+
 		sliderVideo = new JSlider(JSlider.HORIZONTAL, 0, 100, 60);
 		sliderVideo.setPaintTrack(true);
 		sliderVideo.setMinimum(0);
 		sliderVideo.setMaximum(100);
 		sliderVideo.setMajorTickSpacing(5);
-		//sliderVideo.setPaintTicks(true);
+		// sliderVideo.setPaintTicks(true);
 		sliderVideo.setToolTipText("Here u can chose a value");
-		
+		sliderVideo.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				System.out.println("Slider2: " + sliderVideo.getValue());
+				sOG.setSliderVideo(sliderVideo.getValue());
+			}
+		});
+
 		Hashtable labelTable = new Hashtable();
 		labelTable.put(new Integer(0), new JLabel("0"));
 		labelTable.put(new Integer(100), new JLabel("100"));
 		sliderVideo.setLabelTable(labelTable);
 		sliderVideo.setPaintLabels(true);
-		
-		sliderVideo.putClientProperty("Nimbus.Overrides",sliderDefaults);
-        sliderVideo.putClientProperty("Nimbus.Overrides.InheritDefaults",false);
-		
-        this.panelVideoControl.add(sliderVideo);
-        this.panelVideoControl.add(playVideo);
+
+		sliderVideo.putClientProperty("Nimbus.Overrides", sliderDefaults);
+		sliderVideo
+				.putClientProperty("Nimbus.Overrides.InheritDefaults", false);
+
+		this.panelVideoControl.add(sliderVideo);
+		this.panelVideoControl.add(playVideo);
 		this.panelVideoControl.add(stopVideo);
-		
+
 	}
+
 	private void SetRGBSlider() {
 		this.panelSlider = new JPanel();
 		this.panelSlider.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createTitledBorder("Jakiœ napis"),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-		
-		
-		
+
 		slider1 = new JSlider(JSlider.HORIZONTAL, 0, 100, 60);
 		slider1.setPaintTrack(true);
 		slider1.setMinimum(0);
@@ -243,7 +258,6 @@ public class MainFrame extends JFrame {
 		this.rgbButtonGroup = new ButtonGroup();
 		this.rgbButtonGroup.add(RGBRadioButton);
 		this.rgbButtonGroup.add(gammaRadioButton);
-		
 
 		this.infoLabel = new JLabel("None");
 		this.panelSlider.add(slider1);
@@ -272,7 +286,8 @@ public class MainFrame extends JFrame {
 		this.panelRadioBoxSource.add(jpgSource);
 
 	}
-	private void SetOutput(){
+
+	private void SetOutput() {
 		this.panelOutput = new JPanel();
 		this.panelOutput.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createTitledBorder("Set Output"),
@@ -282,21 +297,22 @@ public class MainFrame extends JFrame {
 		this.jpgOutput = new JRadioButton("jpg");
 		this.gifOutput = new JRadioButton("gif");
 		this.bmpOutput = new JRadioButton("bmp");
-		
+
 		this.outputGroup = new ButtonGroup();
 		this.outputGroup.add(aviOutput);
 		this.outputGroup.add(mpgOutput);
 		this.outputGroup.add(bmpOutput);
 		this.outputGroup.add(jpgOutput);
 		this.outputGroup.add(gifOutput);
-		
+
 		this.panelOutput.add(aviOutput);
 		this.panelOutput.add(mpgOutput);
 		this.panelOutput.add(bmpOutput);
 		this.panelOutput.add(jpgOutput);
 		this.panelOutput.add(gifOutput);
-		
+
 	}
+
 	private void setFileChooser() {
 		this.panelFileChooser = new JPanel();
 		borderString = "Set file or patch";
@@ -329,7 +345,7 @@ public class MainFrame extends JFrame {
 				panelFileChooser.setBorder(BorderFactory.createCompoundBorder(
 						BorderFactory.createTitledBorder(borderString),
 						BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-				
+
 				sOG.setPatchFile(patchChooser.getSelectedFile()
 						.getAbsolutePath());
 			}
@@ -384,23 +400,23 @@ public class MainFrame extends JFrame {
 		gBC.ipady = 10;
 		gBC.anchor = GridBagConstraints.WEST;
 		this.pane.add(this.panelFileChooser, gBC);
-		
+
 		gBC.gridx = 1;
 		gBC.gridy = 1;
 		gBC.ipadx = 30;
 		gBC.ipady = 10;
 		gBC.anchor = GridBagConstraints.WEST;
 		this.pane.add(this.panelOutput, gBC);
-		
+
 		gBC.gridx = 1;
 		gBC.gridy = 2;
 		gBC.ipadx = 30;
 		gBC.ipady = 10;
 		gBC.anchor = GridBagConstraints.WEST;
 		this.pane.add(this.panelVideoControl, gBC);
-		
+
 		this.add(pane);
-		
+
 		this.setJMenuBar(this.menuBar);
 
 	}
