@@ -583,5 +583,13 @@ public class MainFrame extends JFrame {
 	public void setStopVideo(JButton stopVideo) {
 		this.stopVideo = stopVideo;
 	}
+
+	public JSlider getSlider1() {
+		return slider1;
+	}
+
+	public void setSlider1(JSlider slider1) {
+		this.slider1 = slider1;
+	}
 	
 }
