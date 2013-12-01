@@ -218,7 +218,7 @@ public class MainFrame extends JFrame {
 	private void SetRGBSlider() {
 		this.panelSlider = new JPanel();
 		this.panelSlider.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createTitledBorder("Jakiœ½ napis"),
+				BorderFactory.createTitledBorder("Jakiœ napis"),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 		
 		
