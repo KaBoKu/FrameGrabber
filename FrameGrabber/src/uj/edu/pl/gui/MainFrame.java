@@ -269,7 +269,25 @@ public class MainFrame extends JFrame {
 		this.rgbButtonGroup = new ButtonGroup();
 		this.rgbButtonGroup.add(RGBRadioButton);
 		this.rgbButtonGroup.add(gammaRadioButton);
-
+		
+		this.RGBRadioButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				slider1.setValue(sOG.getRGBValue());
+			}
+		});
+		
+		this.gammaRadioButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				slider1.setValue(sOG.getGammaValue());
+			}
+		});
+		
 		this.infoLabel = new JLabel("None");
 		this.panelSlider.add(slider1);
 		this.panelSlider.add(infoLabel);
