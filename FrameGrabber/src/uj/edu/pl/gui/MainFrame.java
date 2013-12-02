@@ -40,6 +40,14 @@ import uj.edu.pl.gui.actionlisteners.ActionLPlayVideo;
 import uj.edu.pl.gui.actionlisteners.ActionLRGB;
 import uj.edu.pl.gui.actionlisteners.ActionLStop;
 import uj.edu.pl.gui.actionlisteners.ActionLStopVideo;
+import uj.edu.pl.gui.actionlisteners.ActionLaviOutput;
+import uj.edu.pl.gui.actionlisteners.ActionLaviSource;
+import uj.edu.pl.gui.actionlisteners.ActionLbmpOutput;
+import uj.edu.pl.gui.actionlisteners.ActionLcamSource;
+import uj.edu.pl.gui.actionlisteners.ActionLgifOutput;
+import uj.edu.pl.gui.actionlisteners.ActionLjpgOutput;
+import uj.edu.pl.gui.actionlisteners.ActionLjpgSource;
+import uj.edu.pl.gui.actionlisteners.ActionLmpgOutput;
 
 public class MainFrame extends JFrame {
 	private JPanel pane;
@@ -324,7 +332,11 @@ public class MainFrame extends JFrame {
 		this.aviSource = new JRadioButton("avi");
 		this.camSource = new JRadioButton("Camera");
 		this.jpgSource = new JRadioButton("Picture");
-
+		
+		this.aviSource.addActionListener(new ActionLaviSource(this));
+		this.camSource.addActionListener(new ActionLcamSource(this));
+		this.jpgSource.addActionListener(new ActionLjpgSource(this));
+		
 		this.SourceRadioGroup = new ButtonGroup();
 		this.SourceRadioGroup.add(aviSource);
 		this.SourceRadioGroup.add(camSource);
@@ -346,6 +358,12 @@ public class MainFrame extends JFrame {
 		this.jpgOutput = new JRadioButton("jpg");
 		this.gifOutput = new JRadioButton("gif");
 		this.bmpOutput = new JRadioButton("bmp");
+		
+		this.aviOutput.addActionListener(new ActionLaviOutput(this));
+		this.mpgOutput.addActionListener(new ActionLmpgOutput(this));
+		this.jpgOutput.addActionListener(new ActionLjpgOutput(this));
+		this.gifOutput.addActionListener(new ActionLgifOutput(this));
+		this.bmpOutput.addActionListener(new ActionLbmpOutput(this));
 
 		this.outputGroup = new ButtonGroup();
 		this.outputGroup.add(aviOutput);
