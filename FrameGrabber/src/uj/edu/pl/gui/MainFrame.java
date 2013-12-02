@@ -34,7 +34,10 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import uj.edu.pl.gui.actionlisteners.ActionLConvert;
+import uj.edu.pl.gui.actionlisteners.ActionLPerview;
+import uj.edu.pl.gui.actionlisteners.ActionLPlayVideo;
 import uj.edu.pl.gui.actionlisteners.ActionLStop;
+import uj.edu.pl.gui.actionlisteners.ActionLStopVideo;
 
 public class MainFrame extends JFrame {
 	private JPanel pane;
@@ -142,9 +145,11 @@ public class MainFrame extends JFrame {
 		stop = new JButton("Stop");
 		preview = new JButton("Perview");
 		convert = new JButton("Convert");
-
+		
 		stop.addActionListener(new ActionLStop(this));
-
+		preview.addActionListener(new ActionLPerview(this));
+		convert.addActionListener(new ActionLConvert(this));
+		
 		// Tooltips set
 		stop.setToolTipText("Press to stop");
 		preview.setToolTipText("Press to perview");
@@ -207,6 +212,12 @@ public class MainFrame extends JFrame {
 		playVideo.setToolTipText("Press to play video");
 		stopVideo = new JButton("Stop");
 		stopVideo.setToolTipText("Press to stop");
+		
+		playVideo.addActionListener(new ActionLPlayVideo(this));
+		stopVideo.addActionListener(new ActionLStopVideo(this));
+		
+		
+		
 		sliderVideo = new JSlider();
 
 		sliderVideo = new JSlider(JSlider.HORIZONTAL, 0, 100, 60);
