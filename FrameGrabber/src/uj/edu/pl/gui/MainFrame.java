@@ -34,8 +34,10 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import uj.edu.pl.gui.actionlisteners.ActionLConvert;
+import uj.edu.pl.gui.actionlisteners.ActionLGamma;
 import uj.edu.pl.gui.actionlisteners.ActionLPerview;
 import uj.edu.pl.gui.actionlisteners.ActionLPlayVideo;
+import uj.edu.pl.gui.actionlisteners.ActionLRGB;
 import uj.edu.pl.gui.actionlisteners.ActionLStop;
 import uj.edu.pl.gui.actionlisteners.ActionLStopVideo;
 
@@ -216,8 +218,6 @@ public class MainFrame extends JFrame {
 		playVideo.addActionListener(new ActionLPlayVideo(this));
 		stopVideo.addActionListener(new ActionLStopVideo(this));
 		
-		
-		
 		sliderVideo = new JSlider();
 
 		sliderVideo = new JSlider(JSlider.HORIZONTAL, 0, 100, 60);
@@ -288,23 +288,25 @@ public class MainFrame extends JFrame {
 		this.rgbButtonGroup.add(RGBRadioButton);
 		this.rgbButtonGroup.add(gammaRadioButton);
 		
-		this.RGBRadioButton.addActionListener(new ActionListener() {
+		this.RGBRadioButton.addActionListener(new ActionLRGB(this));
+		/*this.RGBRadioButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				slider1.setValue(sOG.getRGBValue());
 			}
-		});
+		});*/
 		
-		this.gammaRadioButton.addActionListener(new ActionListener() {
+		this.gammaRadioButton.addActionListener(new ActionLGamma(this));
+		/*this.gammaRadioButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				slider1.setValue(sOG.getGammaValue());
 			}
-		});
+		});*/
 		
 		this.infoLabel = new JLabel("None");
 		this.panelSlider.add(slider1);

@@ -177,7 +177,5 @@ public enum StateOfGUI {
 				+ ", aviOutputRadio=" + aviOutputRadio + ", mpgOutputRadio="
 				+ mpgOutputRadio + ", RGBValue=" + RGBValue + ", gammaValue="
 				+ gammaValue + ", patchFile=" + patchFile + "]";
-	}
-	
-	
+	}	
 }
