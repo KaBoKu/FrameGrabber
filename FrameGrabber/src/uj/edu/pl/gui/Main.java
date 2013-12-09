@@ -22,9 +22,10 @@ public class Main {
                         }
                     }
                 }
-				new MainFrame();
+				ThreadReadState tRS = new ThreadReadState();
+				new MainFrame(tRS);
 				//Czytanie stanu GUI
-				Thread t = new Thread(new ThreadReadState());
+				Thread t = new Thread();
 				//t.start();
 			}
 		});

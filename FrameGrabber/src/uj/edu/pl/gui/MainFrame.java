@@ -117,10 +117,12 @@ public class MainFrame extends JFrame {
 	private String borderString;
 
 	private StateOfGUI sOG;
-
-	public MainFrame() {
+	private ThreadReadState tRS;
+	
+	public MainFrame(ThreadReadState tRS) {
 		super("Frame Grabber");
 		sOG = StateOfGUI.INSTANCE;
+		this.tRS = tRS;
 		this.SetMenu();
 		this.SetButtons();
 		this.SetVideoPlayer();
