@@ -3,11 +3,12 @@ package uj.edu.pl.gui.actionlisteners;
 import java.awt.event.ActionEvent;
 
 import uj.edu.pl.gui.MainFrame;
+import uj.edu.pl.gui.state.threads.MonitorSOG;
 
 public class ActionLmpgOutput extends AbstractListenerClass{
 
-	public ActionLmpgOutput(MainFrame mF) {
-		super(mF, null);
+	public ActionLmpgOutput(MainFrame mF, MonitorSOG mSOG) {
+		super(mF, mSOG);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -19,6 +20,7 @@ public class ActionLmpgOutput extends AbstractListenerClass{
 		super.sOG.setJpgOutputRadio(false);
 		super.sOG.setAviOutputRadio(false);
 		super.sOG.setMpgOutputRadio(true);
+		mSOG.write();
 	}
 
 }

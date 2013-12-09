@@ -159,9 +159,6 @@ public class MainFrame extends JFrame {
 		preview = new JButton("Perview");
 		convert = new JButton("Convert");
 		
-		stop.addActionListener(new ActionLStop(this, mSOG));
-		preview.addActionListener(new ActionLPerview(this, mSOG));
-		convert.addActionListener(new ActionLConvert(this));
 		
 		// Tooltips set
 		stop.setToolTipText("Press to stop");
@@ -174,7 +171,9 @@ public class MainFrame extends JFrame {
 		convert.setMnemonic(KeyEvent.VK_C);
 		
 		//Podpinamy listnenery
-		convert.addActionListener(new ActionLConvert(this));
+		stop.addActionListener(new ActionLStop(this, mSOG));
+		preview.addActionListener(new ActionLPerview(this, mSOG));
+		convert.addActionListener(new ActionLConvert(this, mSOG));
 		
 		stop.setFocusable(false);
 
@@ -362,11 +361,11 @@ public class MainFrame extends JFrame {
 		this.gifOutput = new JRadioButton("gif");
 		this.bmpOutput = new JRadioButton("bmp");
 		
-		this.aviOutput.addActionListener(new ActionLaviOutput(this));
-		this.mpgOutput.addActionListener(new ActionLmpgOutput(this));
-		this.jpgOutput.addActionListener(new ActionLjpgOutput(this));
-		this.gifOutput.addActionListener(new ActionLgifOutput(this));
-		this.bmpOutput.addActionListener(new ActionLbmpOutput(this));
+		this.aviOutput.addActionListener(new ActionLaviOutput(this, mSOG));
+		this.mpgOutput.addActionListener(new ActionLmpgOutput(this, mSOG));
+		this.jpgOutput.addActionListener(new ActionLjpgOutput(this, mSOG));
+		this.gifOutput.addActionListener(new ActionLgifOutput(this, mSOG));
+		this.bmpOutput.addActionListener(new ActionLbmpOutput(this, mSOG));
 
 		this.outputGroup = new ButtonGroup();
 		this.outputGroup.add(aviOutput);
