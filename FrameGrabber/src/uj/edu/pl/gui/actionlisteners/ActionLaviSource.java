@@ -3,11 +3,12 @@ package uj.edu.pl.gui.actionlisteners;
 import java.awt.event.ActionEvent;
 
 import uj.edu.pl.gui.MainFrame;
+import uj.edu.pl.gui.state.threads.MonitorSOG;
 
 public class ActionLaviSource extends AbstractListenerClass{
 
-	public ActionLaviSource(MainFrame mF) {
-		super(mF, null);
+	public ActionLaviSource(MainFrame mF, MonitorSOG mSOG) {
+		super(mF, mSOG);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -17,6 +18,7 @@ public class ActionLaviSource extends AbstractListenerClass{
 		super.sOG.setAviSourceRadio(true);
 		super.sOG.setCamSourceRadio(false);
 		super.sOG.setJpgSourceRadio(false);
+		mSOG.write();
 	}
 
 }

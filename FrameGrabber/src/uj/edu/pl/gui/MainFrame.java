@@ -278,10 +278,12 @@ public class MainFrame extends JFrame {
 				if (RGBRadioButton.isSelected()) {
 					System.out.println("RGB: " + slider1.getValue());
 					sOG.setRGBValue(slider1.getValue());
+					mSOG.write();
 				}
 				if (gammaRadioButton.isSelected()) {
 					System.out.println("Gamma: " + slider1.getValue());
 					sOG.setGammaValue(slider1.getValue());
+					mSOG.write();
 				}
 			}
 		});
@@ -335,9 +337,9 @@ public class MainFrame extends JFrame {
 		this.camSource = new JRadioButton("Camera");
 		this.jpgSource = new JRadioButton("Picture");
 		
-		this.aviSource.addActionListener(new ActionLaviSource(this));
-		this.camSource.addActionListener(new ActionLcamSource(this));
-		this.jpgSource.addActionListener(new ActionLjpgSource(this));
+		this.aviSource.addActionListener(new ActionLaviSource(this, mSOG));
+		this.camSource.addActionListener(new ActionLcamSource(this, mSOG));
+		this.jpgSource.addActionListener(new ActionLjpgSource(this, mSOG));
 		
 		this.SourceRadioGroup = new ButtonGroup();
 		this.SourceRadioGroup.add(aviSource);
