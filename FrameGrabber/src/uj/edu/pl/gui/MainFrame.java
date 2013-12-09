@@ -225,8 +225,8 @@ public class MainFrame extends JFrame {
 		stopVideo = new JButton("Stop");
 		stopVideo.setToolTipText("Press to stop");
 		
-		playVideo.addActionListener(new ActionLPlayVideo(this));
-		stopVideo.addActionListener(new ActionLStopVideo(this));
+		playVideo.addActionListener(new ActionLPlayVideo(this, mSOG));
+		stopVideo.addActionListener(new ActionLStopVideo(this, mSOG));
 		
 		sliderVideo = new JSlider();
 
@@ -241,6 +241,7 @@ public class MainFrame extends JFrame {
 			public void stateChanged(ChangeEvent e) {
 				System.out.println("Slider2: " + sliderVideo.getValue());
 				sOG.setSliderVideo(sliderVideo.getValue());
+				mSOG.write();
 			}
 		});
 
@@ -419,6 +420,7 @@ public class MainFrame extends JFrame {
 
 				sOG.setPatchFile(patchChooser.getSelectedFile()
 						.getAbsolutePath());
+				mSOG.write();
 			}
 
 		});

@@ -4,6 +4,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 import uj.edu.pl.gui.state.threads.MonitorSOG;
+import uj.edu.pl.gui.state.threads.ReaderSOG;
 
 public class Main {
 
@@ -28,8 +29,10 @@ public class Main {
 				ThreadReadState tRS = new ThreadReadState();
 				new MainFrame(mSOG);
 				//Czytanie stanu GUI
-				Thread t = new Thread();
-				//t.start();
+				ReaderSOG rSOG = new ReaderSOG(mSOG);
+				Thread t = new Thread(rSOG);
+				t.start();
+				
 			}
 		});
 	}
