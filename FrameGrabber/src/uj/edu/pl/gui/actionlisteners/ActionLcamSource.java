@@ -7,7 +7,7 @@ import uj.edu.pl.gui.MainFrame;
 public class ActionLcamSource extends AbstractListenerClass{
 
 	public ActionLcamSource(MainFrame mF) {
-		super(mF);
+		super(mF, null);
 		// TODO Auto-generated constructor stub
 	}
 

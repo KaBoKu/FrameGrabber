@@ -7,7 +7,7 @@ import uj.edu.pl.gui.MainFrame;
 public class ActionLPlayVideo extends AbstractListenerClass{
 
 	public ActionLPlayVideo(MainFrame mF) {
-		super(mF);
+		super(mF, null);
 		// TODO Auto-generated constructor stub
 	}
 

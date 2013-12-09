@@ -7,7 +7,7 @@ import uj.edu.pl.gui.MainFrame;
 public class ActionLbmpOutput extends AbstractListenerClass{
 
 	public ActionLbmpOutput(MainFrame mF) {
-		super(mF);
+		super(mF, null);
 		// TODO Auto-generated constructor stub
 	}
 

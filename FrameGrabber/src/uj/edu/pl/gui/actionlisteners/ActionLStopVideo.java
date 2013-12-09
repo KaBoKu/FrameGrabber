@@ -7,7 +7,7 @@ import uj.edu.pl.gui.MainFrame;
 public class ActionLStopVideo extends AbstractListenerClass{
 
 	public ActionLStopVideo(MainFrame mF) {
-		super(mF);
+		super(mF, null);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -3,6 +3,8 @@ package uj.edu.pl.gui;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
+import uj.edu.pl.gui.state.threads.MonitorSOG;
+
 public class Main {
 
 	/**
@@ -22,8 +24,9 @@ public class Main {
                         }
                     }
                 }
+				MonitorSOG mSOG = new MonitorSOG();
 				ThreadReadState tRS = new ThreadReadState();
-				new MainFrame(tRS);
+				new MainFrame(mSOG);
 				//Czytanie stanu GUI
 				Thread t = new Thread();
 				//t.start();

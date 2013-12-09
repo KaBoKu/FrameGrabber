@@ -7,7 +7,7 @@ import uj.edu.pl.gui.MainFrame;
 public class ActionLRGB extends AbstractListenerClass{
 
 	public ActionLRGB(MainFrame mF) {
-		super(mF);
+		super(mF, null);
 		// TODO Auto-generated constructor stub
 	}
 

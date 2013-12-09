@@ -7,7 +7,7 @@ import uj.edu.pl.gui.MainFrame;
 public class ActionLGamma extends AbstractListenerClass{
 
 	public ActionLGamma(MainFrame mF) {
-		super(mF);
+		super(mF, null);
 		// TODO Auto-generated constructor stub
 	}
 

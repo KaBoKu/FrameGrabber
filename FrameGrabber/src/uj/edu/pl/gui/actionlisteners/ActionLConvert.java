@@ -7,7 +7,7 @@ import uj.edu.pl.gui.MainFrame;
 public class ActionLConvert extends AbstractListenerClass{
 
 	public ActionLConvert(MainFrame mF) {
-		super(mF);
+		super(mF, null);
 		// TODO Auto-generated constructor stub
 	}
 

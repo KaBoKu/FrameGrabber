@@ -20,7 +20,7 @@ public class MonitorSOG {
 	public void write() {
 			synchronized (sOG) {
 				System.out.println("W-R-I-T-E");
-				sOG.notify();
+				sOG.notifyAll();
 			}
 	}
 }

@@ -7,7 +7,7 @@ import uj.edu.pl.gui.MainFrame;
 public class ActionLaviSource extends AbstractListenerClass{
 
 	public ActionLaviSource(MainFrame mF) {
-		super(mF);
+		super(mF, null);
 		// TODO Auto-generated constructor stub
 	}
 

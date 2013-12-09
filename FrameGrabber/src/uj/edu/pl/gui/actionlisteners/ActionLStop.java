@@ -3,11 +3,12 @@ package uj.edu.pl.gui.actionlisteners;
 import java.awt.event.ActionEvent;
 
 import uj.edu.pl.gui.MainFrame;
+import uj.edu.pl.gui.state.threads.MonitorSOG;
 
 public class ActionLStop extends AbstractListenerClass{
 
-	public ActionLStop(MainFrame mF) {
-		super(mF);
+	public ActionLStop(MainFrame mF, MonitorSOG mSOG) {
+		super(mF, mSOG);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -18,7 +19,7 @@ public class ActionLStop extends AbstractListenerClass{
 			sOG.setStopButton(true);
 			sOG.setPreviewButton(false);
 			sOG.setConvertButton(false);
-			
+			mSOG.write();
 			
 			super.mF.getFileChooserBut().setEnabled(true);
 			super.mF.getAviOutput().setEnabled(true);

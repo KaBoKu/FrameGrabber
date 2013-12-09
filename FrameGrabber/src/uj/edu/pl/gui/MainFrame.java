@@ -48,6 +48,7 @@ import uj.edu.pl.gui.actionlisteners.ActionLgifOutput;
 import uj.edu.pl.gui.actionlisteners.ActionLjpgOutput;
 import uj.edu.pl.gui.actionlisteners.ActionLjpgSource;
 import uj.edu.pl.gui.actionlisteners.ActionLmpgOutput;
+import uj.edu.pl.gui.state.threads.MonitorSOG;
 
 public class MainFrame extends JFrame {
 	private JPanel pane;
@@ -117,12 +118,12 @@ public class MainFrame extends JFrame {
 	private String borderString;
 
 	private StateOfGUI sOG;
-	private ThreadReadState tRS;
+	private MonitorSOG mSOG;
 	
-	public MainFrame(ThreadReadState tRS) {
+	public MainFrame(MonitorSOG mSOG) {
 		super("Frame Grabber");
 		sOG = StateOfGUI.INSTANCE;
-		this.tRS = tRS;
+		this.mSOG = mSOG;
 		this.SetMenu();
 		this.SetButtons();
 		this.SetVideoPlayer();
@@ -158,8 +159,8 @@ public class MainFrame extends JFrame {
 		preview = new JButton("Perview");
 		convert = new JButton("Convert");
 		
-		stop.addActionListener(new ActionLStop(this));
-		preview.addActionListener(new ActionLPerview(this));
+		stop.addActionListener(new ActionLStop(this, mSOG));
+		preview.addActionListener(new ActionLPerview(this, mSOG));
 		convert.addActionListener(new ActionLConvert(this));
 		
 		// Tooltips set

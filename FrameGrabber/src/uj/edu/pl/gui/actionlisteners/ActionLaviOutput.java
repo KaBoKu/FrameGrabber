@@ -7,7 +7,7 @@ import uj.edu.pl.gui.MainFrame;
 public class ActionLaviOutput extends AbstractListenerClass{
 
 	public ActionLaviOutput(MainFrame mF) {
-		super(mF);
+		super(mF, null);
 		// TODO Auto-generated constructor stub
 	}
 
