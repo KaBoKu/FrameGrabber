@@ -35,6 +35,7 @@ import javax.swing.event.ChangeListener;
 
 import uj.edu.pl.gui.actionlisteners.ActionLConvert;
 import uj.edu.pl.gui.actionlisteners.ActionLGamma;
+import uj.edu.pl.gui.actionlisteners.ActionLPauseVideo;
 import uj.edu.pl.gui.actionlisteners.ActionLPerview;
 import uj.edu.pl.gui.actionlisteners.ActionLPlayVideo;
 import uj.edu.pl.gui.actionlisteners.ActionLRGB;
@@ -229,6 +230,7 @@ public class MainFrame extends JFrame {
 		stopVideo.setToolTipText("Press to stop");
 		
 		playVideo.addActionListener(new ActionLPlayVideo(this, mSOG));
+		pauseVideo.addActionListener(new ActionLPauseVideo(this,mSOG));
 		stopVideo.addActionListener(new ActionLStopVideo(this, mSOG));
 		
 		sliderVideo = new JSlider();

@@ -7,6 +7,7 @@ public enum StateOfGUI {
 	boolean convertButton;
 	
 	boolean playVideoButton;
+	boolean pauseVideoButton;
 	boolean stopVideoButton;
 	int sliderVideo;//Wartosc procentowa
 	
@@ -59,7 +60,15 @@ public enum StateOfGUI {
 	public void setPlayVideoButton(boolean playVideoButton) {
 		this.playVideoButton = playVideoButton;
 	}
+	
+	public boolean isPauseVideoButton() {
+		return pauseVideoButton;
+	}
 
+	public void setPauseVideoButton(boolean pauseVideoButton) {
+		this.pauseVideoButton = pauseVideoButton;
+	}
+	
 	public boolean isStopVideoButton() {
 		return stopVideoButton;
 	}
