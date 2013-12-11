@@ -59,6 +59,7 @@ public class MainFrame extends JFrame {
 	private JButton convert;
 	// Buttony do plajera
 	private JButton playVideo;
+	private JButton pauseVideo;
 	private JButton stopVideo;
 	private JSlider sliderVideo;
 	private int percentSliderVideo;
@@ -222,6 +223,8 @@ public class MainFrame extends JFrame {
 
 		playVideo = new JButton("Play");
 		playVideo.setToolTipText("Press to play video");
+		pauseVideo = new JButton("Pause");
+		pauseVideo.setToolTipText("Press to pasue");
 		stopVideo = new JButton("Stop");
 		stopVideo.setToolTipText("Press to stop");
 		
