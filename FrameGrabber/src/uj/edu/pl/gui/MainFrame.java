@@ -159,6 +159,10 @@ public class MainFrame extends JFrame {
 
 	private void SetButtons() {
 		panelButtons = new JPanel();
+		GridBagLayout layout = new GridBagLayout();
+		panelButtons.setLayout(layout);
+		GridBagConstraints gBC = new GridBagConstraints();
+		
 		this.panelButtons.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createTitledBorder("Set Mode"),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
@@ -183,7 +187,10 @@ public class MainFrame extends JFrame {
 		stop.setMnemonic(KeyEvent.VK_S);
 		preview.setMnemonic(KeyEvent.VK_P);
 		convert.setMnemonic(KeyEvent.VK_C);
-		
+		playVideoC.setMnemonic(KeyEvent.VK_K);
+		stopVideoC.setMnemonic(KeyEvent.VK_I);
+		nextC.setMnemonic(KeyEvent.VK_RIGHT);
+		pervC.setMnemonic(KeyEvent.VK_LEFT);
 		//Podpinamy listnenery
 		stop.addActionListener(new ActionLStop(this, mSOG));
 		preview.addActionListener(new ActionLPerview(this, mSOG));
@@ -191,9 +198,25 @@ public class MainFrame extends JFrame {
 		
 		stop.setFocusable(false);
 
-		this.panelButtons.add(stop);
-		this.panelButtons.add(preview);
-		this.panelButtons.add(convert);
+		//this.panelButtons.add(stop);
+		gBC.gridx = 0;
+		gBC.gridy = 0;
+		this.panelButtons.add(preview,gBC);
+		gBC.gridx = 1;
+		gBC.gridy = 0;
+		this.panelButtons.add(convert,gBC);
+		gBC.gridx = 2;
+		gBC.gridy = 0;
+		this.panelButtons.add(playVideoC,gBC);
+		gBC.gridx = 0;
+		gBC.gridy = 1;
+		this.panelButtons.add(stopVideoC,gBC);
+		gBC.gridx = 1;
+		gBC.gridy = 1;
+		this.panelButtons.add(nextC,gBC);
+		gBC.gridx = 2;
+		gBC.gridy = 1;
+		this.panelButtons.add(pervC,gBC);
 	}
 
 	private void SetVideoPlayer() {
