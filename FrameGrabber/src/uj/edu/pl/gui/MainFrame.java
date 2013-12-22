@@ -28,6 +28,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
+import javax.swing.JToggleButton;
 import javax.swing.Painter;
 import javax.swing.UIDefaults;
 import javax.swing.event.ChangeEvent;
@@ -57,7 +58,11 @@ public class MainFrame extends JFrame {
 	// Buttony do konwersji
 	private JButton stop;
 	private JButton preview;
-	private JButton convert;
+	private JToggleButton convert;
+	private JButton playVideoC;
+	private JButton stopVideoC;
+	private JButton nextC;
+	private JButton pervC;
 	// Buttony do plajera
 	private JButton playVideo;
 	private JButton pauseVideo;
@@ -159,14 +164,21 @@ public class MainFrame extends JFrame {
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 		stop = new JButton("Stop");
 		preview = new JButton("Perview");
-		convert = new JButton("Convert");
+		convert = new JToggleButton("Convert");
 		
-		
+		playVideoC = new JButton("PlayC");
+		stopVideoC = new JButton("StopC");
+		nextC = new JButton("nextC");
+		pervC = new JButton("pervC");
 		// Tooltips set
 		stop.setToolTipText("Press to stop");
 		preview.setToolTipText("Press to perview");
 		convert.setToolTipText("Press to start convert. It could take long time depends on ur PC");
-
+		playVideoC.setToolTipText("Press to play");
+		stopVideoC.setToolTipText("Press to stop or pause");
+		nextC.setToolTipText("next frame");
+		pervC.setToolTipText("pervieus frame");
+		
 		// Memonic set
 		stop.setMnemonic(KeyEvent.VK_S);
 		preview.setMnemonic(KeyEvent.VK_P);
@@ -544,11 +556,11 @@ public class MainFrame extends JFrame {
 
 	}
 
-	public JButton getConvert() {
+	public JToggleButton getConvert() {
 		return convert;
 	}
 
-	public void setConvert(JButton convert) {
+	public void setConvert(JToggleButton convert) {
 		this.convert = convert;
 	}
 
