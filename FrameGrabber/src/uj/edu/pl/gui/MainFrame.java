@@ -64,11 +64,13 @@ public class MainFrame extends JFrame {
 	private JButton stopVideoC;
 	private JButton nextC;
 	private JButton pervC;
+		
 	// Buttony do plajera
 	// Do wyrzucenia z powodu zmian w GUI
 	private JButton playVideo;
 	private JButton pauseVideo;
 	private JButton stopVideo;
+	
 	private JSlider sliderVideo;
 	private int percentSliderVideo;
 	// Menu
@@ -782,6 +784,39 @@ public class MainFrame extends JFrame {
 
 	public void setSlider1(JSlider slider1) {
 		this.slider1 = slider1;
+	}
+	
+	
+	public JButton getPlayVideoC() {
+		return playVideoC;
+	}
+
+	public void setPlayVideoC(JButton playVideoC) {
+		this.playVideoC = playVideoC;
+	}
+
+	public JButton getStopVideoC() {
+		return stopVideoC;
+	}
+
+	public void setStopVideoC(JButton stopVideoC) {
+		this.stopVideoC = stopVideoC;
+	}
+
+	public JButton getNextC() {
+		return nextC;
+	}
+
+	public void setNextC(JButton nextC) {
+		this.nextC = nextC;
+	}
+
+	public JButton getPervC() {
+		return pervC;
+	}
+
+	public void setPervC(JButton pervC) {
+		this.pervC = pervC;
 	}
 	
 }

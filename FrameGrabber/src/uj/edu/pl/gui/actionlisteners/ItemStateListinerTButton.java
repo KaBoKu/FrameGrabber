@@ -29,6 +29,10 @@ public class ItemStateListinerTButton implements ItemListener {
 			sOG.setStopButton(false);
 			mSOG.write();
 			mF.getFileChooserBut().setEnabled(false);
+			mF.getPlayVideoC().setEnabled(false);
+			mF.getNextC().setEnabled(false);
+			mF.getPervC().setEnabled(false);
+			mF.getStopVideoC().setEnabled(false);
 			mF.getAviOutput().setEnabled(false);
 			mF.getAviSource().setEnabled(false);
 			mF.getBmpOutput().setEnabled(false);
@@ -52,6 +56,10 @@ public class ItemStateListinerTButton implements ItemListener {
 			mSOG.write();
 
 			mF.getFileChooserBut().setEnabled(true);
+			mF.getPlayVideoC().setEnabled(true);
+			mF.getNextC().setEnabled(true);
+			mF.getPervC().setEnabled(true);
+			mF.getStopVideoC().setEnabled(true);
 			mF.getAviOutput().setEnabled(true);
 			mF.getAviSource().setEnabled(true);
 			mF.getBmpOutput().setEnabled(true);

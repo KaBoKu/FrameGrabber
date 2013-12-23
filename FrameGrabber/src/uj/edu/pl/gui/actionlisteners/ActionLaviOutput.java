@@ -22,5 +22,4 @@ public class ActionLaviOutput extends AbstractListenerClass{
 		super.sOG.setMpgOutputRadio(false);
 		mSOG.write();
 	}
-
 }
