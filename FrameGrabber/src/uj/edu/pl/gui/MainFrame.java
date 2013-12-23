@@ -50,6 +50,7 @@ import uj.edu.pl.gui.actionlisteners.ActionLgifOutput;
 import uj.edu.pl.gui.actionlisteners.ActionLjpgOutput;
 import uj.edu.pl.gui.actionlisteners.ActionLjpgSource;
 import uj.edu.pl.gui.actionlisteners.ActionLmpgOutput;
+import uj.edu.pl.gui.actionlisteners.ItemStateListinerTButton;
 import uj.edu.pl.gui.state.threads.MonitorSOG;
 
 public class MainFrame extends JFrame {
@@ -64,6 +65,7 @@ public class MainFrame extends JFrame {
 	private JButton nextC;
 	private JButton pervC;
 	// Buttony do plajera
+	// Do wyrzucenia z powodu zmian w GUI
 	private JButton playVideo;
 	private JButton pauseVideo;
 	private JButton stopVideo;
@@ -194,8 +196,8 @@ public class MainFrame extends JFrame {
 		//Podpinamy listnenery
 		stop.addActionListener(new ActionLStop(this, mSOG));
 		preview.addActionListener(new ActionLPerview(this, mSOG));
-		convert.addActionListener(new ActionLConvert(this, mSOG));
-		
+		//convert.addActionListener(new ActionLConvert(this, mSOG));
+		convert.addItemListener(new ItemStateListinerTButton(this,mSOG));
 		stop.setFocusable(false);
 
 		
