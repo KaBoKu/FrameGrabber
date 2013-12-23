@@ -250,6 +250,7 @@ public class MainFrame extends JFrame {
 					public void stateChanged(ChangeEvent e) {
 						System.out.println("Slider2: " + sliderVideo.getValue());
 						sOG.setSliderVideo(sliderVideo.getValue());
+						sOG.setScroll((byte)sliderVideo.getValue());
 						mSOG.write();
 					}
 				});
