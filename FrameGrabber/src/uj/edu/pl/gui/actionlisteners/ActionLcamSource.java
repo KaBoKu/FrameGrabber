@@ -18,6 +18,11 @@ public class ActionLcamSource extends AbstractListenerClass{
 		super.sOG.setAviSourceRadio(false);
 		super.sOG.setCamSourceRadio(true);
 		super.sOG.setJpgSourceRadio(false);
+		
+		super.sOG.setiImageFile(false);
+		super.sOG.setiVideoFile(false);
+		super.sOG.setiWebCamera(true);
+		
 		mSOG.write();
 	}
 

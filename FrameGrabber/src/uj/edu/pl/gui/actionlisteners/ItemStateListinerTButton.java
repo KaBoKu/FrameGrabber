@@ -25,6 +25,7 @@ public class ItemStateListinerTButton implements ItemListener {
 		System.out.println("ItemEvent!");
 		if (ev.getStateChange() == ItemEvent.SELECTED) {
 			System.out.println("button is selected");
+			sOG.setConvert(true);
 			sOG.setConvertButton(true);
 			sOG.setStopButton(false);
 			mSOG.write();
@@ -51,6 +52,7 @@ public class ItemStateListinerTButton implements ItemListener {
 		} else if (ev.getStateChange() == ItemEvent.DESELECTED) {
 			System.out.println("button is not selected");
 			sOG.setStopButton(true);
+			sOG.setConvert(false);
 			sOG.setPreviewButton(false);
 			sOG.setConvertButton(false);
 			mSOG.write();

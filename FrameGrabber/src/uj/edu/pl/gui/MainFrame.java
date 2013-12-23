@@ -531,6 +531,8 @@ public class MainFrame extends JFrame {
 
 				sOG.setPatchFile(patchChooser.getSelectedFile()
 						.getAbsolutePath());
+				sOG.setiFileName(patchChooser.getSelectedFile()
+						.getAbsolutePath());
 				mSOG.write();
 			}
 

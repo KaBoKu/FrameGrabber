@@ -20,6 +20,10 @@ public class ActionLbmpOutput extends AbstractListenerClass{
 		super.sOG.setJpgOutputRadio(false);
 		super.sOG.setAviOutputRadio(false);
 		super.sOG.setMpgOutputRadio(false);
+		
+		super.sOG.setoImageFormat("bmp");
+		super.sOG.setoVideoFormat(null);
+		
 		mSOG.write();
 	}
 

@@ -18,6 +18,11 @@ public class ActionLaviSource extends AbstractListenerClass{
 		super.sOG.setAviSourceRadio(true);
 		super.sOG.setCamSourceRadio(false);
 		super.sOG.setJpgSourceRadio(false);
+		
+		super.sOG.setiImageFile(false);
+		super.sOG.setiVideoFile(true);
+		super.sOG.setiWebCamera(false);
+		
 		mSOG.write();
 	}
 

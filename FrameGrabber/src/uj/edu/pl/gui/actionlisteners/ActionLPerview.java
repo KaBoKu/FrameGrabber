@@ -16,6 +16,7 @@ public class ActionLPerview extends AbstractListenerClass{
 	public void actionPerformed(ActionEvent eV) {
 		// TODO Auto-generated method stub
 		super.sOG.setPreviewButton(true);
+		super.sOG.setPreview(true);
 		mSOG.write();
 	}
 

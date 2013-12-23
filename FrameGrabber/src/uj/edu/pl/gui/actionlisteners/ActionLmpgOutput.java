@@ -20,6 +20,11 @@ public class ActionLmpgOutput extends AbstractListenerClass{
 		super.sOG.setJpgOutputRadio(false);
 		super.sOG.setAviOutputRadio(false);
 		super.sOG.setMpgOutputRadio(true);
+		
+		super.sOG.setoImageFormat(null);
+		super.sOG.setoVideoFormat("mpg");
+		
+		
 		mSOG.write();
 	}
 

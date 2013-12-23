@@ -20,6 +20,10 @@ public class ActionLjpgOutput extends AbstractListenerClass{
 		super.sOG.setJpgOutputRadio(true);
 		super.sOG.setAviOutputRadio(false);
 		super.sOG.setMpgOutputRadio(false);
+		
+		super.sOG.setoImageFormat("jpg");
+		super.sOG.setoVideoFormat(null);
+		
 		mSOG.write();
 	}
 

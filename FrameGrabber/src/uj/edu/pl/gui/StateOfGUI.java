@@ -83,61 +83,6 @@ public enum StateOfGUI {
 	private boolean stopApp; // flaga informujπca o wy≥πczeniu jednego z okienek (a wiÍc rÛwnieø zatrzymaniu ca≥ej aplikacji).
 	                                  // ustawiasz, kiedy wciúniesz krzyøyk w okienku Windowsowym.
 	
-	/*
-	//Rodzaj przetwarzania
-	private boolean preview;      // Podgl¶d
-	private boolean convert;      // Konwersja, powt°rne przyciùni‡cie przerywa.
-
-	//Kontrolki podgl¶du
-	private boolean start;
-	private boolean pause;
-	private boolean stop;         // Zatrzymanie
-	private boolean next;
-	private boolean previous;
-	private boolean first;
-	private boolean last;
-	private byte    scroll; (moøe float? 0.0 do 1.0)
-
-	//∆r°d-o / wejùcie
-	private boolean iVideoFile;   // Plik filmowy                    OK
-	private boolean iImageFile;   // Pliki graficzne                 OK
-	private boolean iWebCamera;   // Kamera internetowa              OK
-	private String  iFileName;    // Nazwa pliku filmowego lub pierwszego z plik°w graficznych
-	                              // np. moj_film-012340.gif
-	//Informacje o wejùciu
-	private long    iNumAllFrames;   // Od wybranej do koΩca (pg) lub wszystkich (pf)
-	private double  iFrameRate;   // Dla pf
-
-	//Parametry wejùcia u¨yte do generacji wyjùcia (wyb°r suwakiem r°wnie¨!)
-	private long    iStartTime;   // Przedzia- czasowy - pocz¶tek    OK
-	private long    iDuration;    // Przedzia- czasowy - do obl. koΩca OK
-	private long    iStartFrame;  // Klatka pocz¶tkowa - pf, wzgl. pierwszej - pg, 0 - k,
-	private long    iNumFrames;   // Iloùä klatek
-	                           // Dodaä suwak prezentuj¶cy wyb°r u¨ytkownika
-	//Parametry wyjùcia
-	//Typ wyjùcia
-	private boolean oVideoFile;   // jw.                             OK
-	private boolean oImageFile;   // jw.                             OK
-	private String  oFileName;    // Pierwszy z pg lub ca-y pf
-
-	//Iloùä i cz‡stotliwoùä klatek
-	private long    oNumFrames;   // Iloùä kadr°w/pg wyjùciowych     OK
-	private double  oFrameRate;   // Cz‡stotliwoùä kadr°w pf
-
-	//Format
-	private String  oImageFormat; // Format pg wyjùciowych
-	private String  oVideoFormat; // Fromat pf wyjùciowego
-
-	//Przekszta-cenia obrazu
-	private String  oColorSpace;  // PrzestrzeΩ kolor°w              OK
-	private byte    oGaussFilter; // Filtracja Gaussa                OK
-	private byte    oBrightness;  // Jasnoùä                         OK
-	private boolean oGreyscale;   // Obraz jednokana-owy             OK
-	private boolean oLogo;        // Dodaä logo lub nie              OK
-
-	private boolean stopApp; // flaga informujπca o wy≥πczeniu jednego z okienek (a wiÍc rÛwnieø zatrzymaniu ca≥ej aplikacji).
-	                                  // ustawiasz, kiedy wciúniesz krzyøyk w okienku Windowsowym.
-	*/
 	
 	
 	public boolean isStopButton() {

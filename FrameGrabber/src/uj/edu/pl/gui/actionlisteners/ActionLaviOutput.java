@@ -20,6 +20,9 @@ public class ActionLaviOutput extends AbstractListenerClass{
 		super.sOG.setJpgOutputRadio(false);
 		super.sOG.setAviOutputRadio(true);
 		super.sOG.setMpgOutputRadio(false);
+		
+		super.sOG.setoImageFormat(null);
+		super.sOG.setoVideoFormat("avi");
 		mSOG.write();
 	}
 }
