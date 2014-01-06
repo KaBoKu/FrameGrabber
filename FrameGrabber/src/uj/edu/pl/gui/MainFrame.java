@@ -17,6 +17,7 @@ import java.util.Hashtable;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
@@ -36,6 +37,7 @@ import javax.swing.event.ChangeListener;
 
 import uj.edu.pl.gui.actionlisteners.ActionLConvert;
 import uj.edu.pl.gui.actionlisteners.ActionLGamma;
+import uj.edu.pl.gui.actionlisteners.ActionLLogo;
 import uj.edu.pl.gui.actionlisteners.ActionLPauseVideo;
 import uj.edu.pl.gui.actionlisteners.ActionLPerview;
 import uj.edu.pl.gui.actionlisteners.ActionLPlayVideo;
@@ -77,7 +79,7 @@ public class MainFrame extends JFrame {
 	private JMenuBar menuBar;
 	private JMenu menu;
 	private JMenuItem menuItem;
-	// Leyout
+	// Layout
 	private GridBagConstraints gBC;
 	private GridBagLayout gBL;
 
@@ -106,8 +108,10 @@ public class MainFrame extends JFrame {
 	// RgbRadioButtons
 	private JRadioButton RGBRadioButton;
 	private JRadioButton gammaRadioButton;
-
 	private ButtonGroup rgbButtonGroup;
+	
+	private JCheckBox singleChannelBox;
+	private JCheckBox logoBox;
 
 	// Wybor sciezki
 	private JFileChooser patchChooser;
@@ -433,11 +437,18 @@ public class MainFrame extends JFrame {
 			}
 		});*/
 		
+		this.logoBox = new JCheckBox("Logo");
+		this.singleChannelBox = new JCheckBox("One Channel");
+		
+		this.logoBox.addActionListener(new ActionLLogo(this,mSOG));
+		
 		this.infoLabel = new JLabel("None");
 		this.panelSlider.add(slider1);
 		this.panelSlider.add(infoLabel);
 		this.panelSlider.add(RGBRadioButton);
 		this.panelSlider.add(gammaRadioButton);
+		this.panelSlider.add(singleChannelBox);
+		this.panelSlider.add(logoBox);
 	}
 
 	private void SetRadioSource() {

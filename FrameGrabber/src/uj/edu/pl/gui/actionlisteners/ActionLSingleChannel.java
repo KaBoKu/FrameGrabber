@@ -7,22 +7,22 @@ import javax.swing.AbstractButton;
 import uj.edu.pl.gui.MainFrame;
 import uj.edu.pl.gui.state.threads.MonitorSOG;
 
-public class ActionLLogo extends AbstractListenerClass{
+public class ActionLSingleChannel extends AbstractListenerClass{
 
-	public ActionLLogo(MainFrame mF, MonitorSOG mSOG) {
+	public ActionLSingleChannel(MainFrame mF, MonitorSOG mSOG) {
 		super(mF, mSOG);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-	    AbstractButton abstractButton = (AbstractButton) e.getSource();
+		AbstractButton abstractButton = (AbstractButton) e.getSource();
 	    boolean selected = abstractButton.getModel().isSelected();
-		if (selected) sOG.setoLogo(true);
-		else sOG.setoLogo(false);
+		if (selected) sOG.setoGreyscale(true);
+		else sOG.setoGreyscale(false);
 		
 		mSOG.write();
+		
 	}
 
 }
