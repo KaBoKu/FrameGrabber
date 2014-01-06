@@ -1,5 +1,10 @@
 package uj.edu.pl.gui;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
@@ -27,11 +32,16 @@ public class Main {
                 }
 				MonitorSOG mSOG = new MonitorSOG();
 				ThreadReadState tRS = new ThreadReadState();
-				new MainFrame(mSOG);
+				MainFrame mainFrame = new MainFrame(mSOG);
+				
+			
+				
+				
 				//Czytanie stanu GUI
 				ReaderSOG rSOG = new ReaderSOG(mSOG);
 				Thread t = new Thread(rSOG);
 				t.start();
+				
 				
 			}
 		});

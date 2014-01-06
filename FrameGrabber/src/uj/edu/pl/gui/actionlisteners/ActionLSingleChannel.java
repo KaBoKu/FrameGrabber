@@ -20,9 +20,7 @@ public class ActionLSingleChannel extends AbstractListenerClass{
 	    boolean selected = abstractButton.getModel().isSelected();
 		if (selected) sOG.setoGreyscale(true);
 		else sOG.setoGreyscale(false);
-		
-		mSOG.write();
-		
+		mSOG.write();	
 	}
 
 }

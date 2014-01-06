@@ -11,6 +11,8 @@ import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.File;
 import java.util.Hashtable;
 
@@ -26,6 +28,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
@@ -35,6 +38,9 @@ import javax.swing.UIDefaults;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.omg.CORBA.PRIVATE_MEMBER;
+
+import uj.edu.pl.gui.actionlisteners.ActionLColorSpace;
 import uj.edu.pl.gui.actionlisteners.ActionLConvert;
 import uj.edu.pl.gui.actionlisteners.ActionLGamma;
 import uj.edu.pl.gui.actionlisteners.ActionLLogo;
@@ -42,8 +48,10 @@ import uj.edu.pl.gui.actionlisteners.ActionLPauseVideo;
 import uj.edu.pl.gui.actionlisteners.ActionLPerview;
 import uj.edu.pl.gui.actionlisteners.ActionLPlayVideo;
 import uj.edu.pl.gui.actionlisteners.ActionLRGB;
+import uj.edu.pl.gui.actionlisteners.ActionLSingleChannel;
 import uj.edu.pl.gui.actionlisteners.ActionLStop;
 import uj.edu.pl.gui.actionlisteners.ActionLStopVideo;
+import uj.edu.pl.gui.actionlisteners.ActionLWindow;
 import uj.edu.pl.gui.actionlisteners.ActionLaviOutput;
 import uj.edu.pl.gui.actionlisteners.ActionLaviSource;
 import uj.edu.pl.gui.actionlisteners.ActionLbmpOutput;
@@ -112,6 +120,7 @@ public class MainFrame extends JFrame {
 	
 	private JCheckBox singleChannelBox;
 	private JCheckBox logoBox;
+	private JComboBox<String> colorComboBox;
 
 	// Wybor sciezki
 	private JFileChooser patchChooser;
@@ -128,7 +137,7 @@ public class MainFrame extends JFrame {
 	private JPanel panelFileChooser;
 	private JPanel panelStatusBar;
 
-	private JComboBox<String> comboBox;
+	
 
 	private String borderString;
 
@@ -152,10 +161,9 @@ public class MainFrame extends JFrame {
 		Dimension dimension = new Dimension(810, 450);
 		this.setSize(dimension);
 		this.setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.addWindowListener(new ActionLWindow(this, mSOG, this, 0));
 		setVisible(true);
-
 	}
 
 	private void SetMenu() {
@@ -436,11 +444,17 @@ public class MainFrame extends JFrame {
 				slider1.setValue(sOG.getGammaValue());
 			}
 		});*/
-		
+		String [] ComboBox = new String [3];
+		ComboBox [0] ="RGB";
+		ComboBox [1] ="CMYK";
+		ComboBox [2]="HSB";
 		this.logoBox = new JCheckBox("Logo");
 		this.singleChannelBox = new JCheckBox("One Channel");
 		
+		this.colorComboBox = new JComboBox<String>(ComboBox);
 		this.logoBox.addActionListener(new ActionLLogo(this,mSOG));
+		this.singleChannelBox.addActionListener(new ActionLSingleChannel(this,mSOG));
+		this.colorComboBox.addActionListener(new ActionLColorSpace(this, mSOG));
 		
 		this.infoLabel = new JLabel("None");
 		this.panelSlider.add(slider1);
@@ -449,6 +463,7 @@ public class MainFrame extends JFrame {
 		this.panelSlider.add(gammaRadioButton);
 		this.panelSlider.add(singleChannelBox);
 		this.panelSlider.add(logoBox);
+		this.panelSlider.add(colorComboBox);
 	}
 
 	private void SetRadioSource() {
