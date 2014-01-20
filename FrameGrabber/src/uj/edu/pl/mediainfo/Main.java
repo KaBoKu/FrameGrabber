@@ -13,7 +13,7 @@ class Media {
 
 	public void run() throws UnsupportedEncodingException {
 		String url0 = getClass()
-				.getResource("/Crayon_Pop-Lonely_Christmas.avi").getPath();
+				.getResource("/Lenda Murray.mp4").getPath();
 		if (url0.startsWith("/", 0))
 			url0 = url0.replaceFirst("/", "");
 		url0 = URLDecoder.decode(url0, "UTF-8");

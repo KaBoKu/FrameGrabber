@@ -66,6 +66,7 @@ import uj.edu.pl.gui.actionlisteners.ActionLjpgSource;
 import uj.edu.pl.gui.actionlisteners.ActionLmpgOutput;
 import uj.edu.pl.gui.actionlisteners.ItemStateListinerTButton;
 import uj.edu.pl.gui.state.threads.MonitorSOG;
+import uj.edu.pl.mediainfo.MediaInfo;
 
 public class MainFrame extends JFrame {
 	private JPanel pane;
@@ -115,6 +116,8 @@ public class MainFrame extends JFrame {
 	private JLabel audioBitrate;
 	private JLabel duration;
 	private JLabel channels;
+	//MediaInfo
+	private MediaInfo info;
 	
 	// RadioButtony do wyboru zrodla
 	private JRadioButton aviSource;
@@ -171,6 +174,7 @@ public class MainFrame extends JFrame {
 		//this.SetVideoPlayer();
 		this.SetRGBSlider();
 		this.setFileChooser();
+		this.setMediaInfo();
 		this.SetRadioSource();
 		this.SetOutput();
 		this.SetStatusBar();
@@ -543,8 +547,10 @@ public class MainFrame extends JFrame {
 	
 	private void setMediaInfo(){
 		this.panelMediaInfo = new JPanel();
-		this.panelMediaInfo.setLayout(new GridLayout(2,5));
-		
+		this.panelMediaInfo.setLayout(new GridLayout(5,2));
+		this.panelMediaInfo.setBorder(BorderFactory.createCompoundBorder(
+				BorderFactory.createTitledBorder(borderString),
+				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 		fotmat=new JLabel("format");
 		patchJLabel=new JLabel("patch");
 		width=new JLabel("width");
@@ -581,13 +587,15 @@ public class MainFrame extends JFrame {
 		filePatch.setToolTipText("Patch to source");
 		Pattern p;
 		Matcher m;
+		info = new MediaInfo();
+		
 		fileChooserBut.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent ev) {
 				// TODO Auto-generated method stub
 				patchChooser = new JFileChooser();
-				fileFilter= new ExtensionFileFilter("avi, mpg,jpg,gif,bmp",new String []{"AVI","MPG","JPG","BMP","GIF","JPEG"});
+				fileFilter= new ExtensionFileFilter("avi,mpg,mp4,jpg,gif,bmp",new String []{"AVI","MPG","MP4","JPG","BMP","GIF","JPEG"});
 				patchChooser.setFileFilter(fileFilter);
 				patchChooser
 						.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -601,7 +609,50 @@ public class MainFrame extends JFrame {
 				if (patchChooser.getSelectedFile().getAbsolutePath()!=null){
 					String filePatchString = patchChooser.getSelectedFile().getAbsolutePath(); 
 					if(filePatchString.matches(".+\\.(jpg|bmp|gif)$"))System.out.println("file graphic");
-					if(filePatchString.matches(".+\\.(avi|mpg)$"))System.out.println("file movie");;
+					if(filePatchString.matches(".+\\.(avi|mpg|mp4)$")){
+						System.out.println("file movie");
+						File file = new File(filePatchString);
+						info.open(file);
+						int i = 0;
+						
+						String format = info.get(MediaInfo.StreamKind.Video, i, "Format",
+								MediaInfo.InfoKind.Text, MediaInfo.InfoKind.Name);
+						fotmat.setText(format);
+						String bitRate2 = info.get(MediaInfo.StreamKind.Video, i, "BitRate",
+								MediaInfo.InfoKind.Text, MediaInfo.InfoKind.Name);
+						bitRate.setText(bitRate2);
+						String frameRate = info.get(MediaInfo.StreamKind.Video, i, "FrameRate",
+								MediaInfo.InfoKind.Text, MediaInfo.InfoKind.Name);
+						MainFrame.this.frameRate.setText(frameRate);
+						String width = info.get(MediaInfo.StreamKind.Video, i, "Width",
+								MediaInfo.InfoKind.Text, MediaInfo.InfoKind.Name);
+						MainFrame.this.width.setText(width);
+						String audioBitrate = info.get(MediaInfo.StreamKind.Audio, i,
+								"BitRate", MediaInfo.InfoKind.Text, MediaInfo.InfoKind.Name);
+						String audioChannels = info.get(MediaInfo.StreamKind.Audio, i,
+								"Channels", MediaInfo.InfoKind.Text, MediaInfo.InfoKind.Name);
+						MainFrame.this.channels.setText(audioChannels);
+						String height = info.get(MediaInfo.StreamKind.Video, i, "Height",
+								MediaInfo.InfoKind.Text, MediaInfo.InfoKind.Name);
+						MainFrame.this.height.setText(height);
+						String ratio = info.get(MediaInfo.StreamKind.Video, i,
+								"AspectRatio/String", MediaInfo.InfoKind.Text,
+								MediaInfo.InfoKind.Name);
+						MainFrame.this.ratio.setText(ratio);
+						String duration = info.get(MediaInfo.StreamKind.Video, i, "Duration",
+								MediaInfo.InfoKind.Text, MediaInfo.InfoKind.Name);
+						MainFrame.this.duration.setText(duration);
+						
+						
+						System.out.println(format);
+						System.out.println(bitRate);
+						System.out.println(frameRate);
+						System.out.println(width);
+						System.out.println(height);
+						System.out.println(ratio);
+						System.out.println(audioBitrate);
+						System.out.println(Integer.parseInt(duration) / 60.0);
+					}
 					System.out.println("NIemanullla");
 				filePatch.setText(patchChooser.getSelectedFile().getAbsolutePath());
 				
@@ -729,6 +780,14 @@ public class MainFrame extends JFrame {
 		gBC.ipady = 10;
 		gBC.anchor = GridBagConstraints.WEST;
 		this.pane.add(this.panelStatusBar, gBC);
+		
+		
+		gBC.gridx = 1;
+		gBC.gridy = 2;
+		gBC.ipadx = 30;
+		gBC.ipady = 10;
+		gBC.anchor = GridBagConstraints.WEST;
+		this.pane.add(this.panelMediaInfo, gBC);
 		
 		this.add(pane);
 
