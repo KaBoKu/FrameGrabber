@@ -124,6 +124,7 @@ public class MainFrame extends JFrame {
 
 	// Wybor sciezki
 	private JFileChooser patchChooser;
+	private ExtensionFileFilter fileFilter;
 	private JButton fileChooserBut;
 	private JLabel filePatch;
 	// Panele, ktore beda wrzucane do frame'a
@@ -541,6 +542,8 @@ public class MainFrame extends JFrame {
 			public void actionPerformed(ActionEvent ev) {
 				// TODO Auto-generated method stub
 				patchChooser = new JFileChooser();
+				fileFilter= new ExtensionFileFilter("Avi, mpg,jpg,gif,",new String []{"AVI","MPG","JPG","BMP","GIF","JPEG"});
+				patchChooser.setFileFilter(fileFilter);
 				patchChooser
 						.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 				patchChooser.setDialogTitle("Choose a file");
