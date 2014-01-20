@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -99,7 +100,19 @@ public class MainFrame extends JFrame {
 	private JLabel infoLabel;
 	private JLabel sliderInfoLabel;
 	private JLabel statusLabel;
-
+		
+	//Napisy do panelMediaInfo
+	private JLabel patchJLabel;
+	private JLabel fotmat;
+	private JLabel bitRate;
+	private JLabel frameRate;
+	private JLabel width;
+	private JLabel height;
+	private JLabel ratio;
+	private JLabel audioBitrate;
+	private JLabel duration;
+	private JLabel channels;
+	
 	// RadioButtony do wyboru zrodla
 	private JRadioButton aviSource;
 	private JRadioButton jpgSource;
@@ -137,6 +150,7 @@ public class MainFrame extends JFrame {
 	private JPanel panelButtons;
 	private JPanel panelFileChooser;
 	private JPanel panelStatusBar;
+	private JPanel panelMediaInfo;
 
 	
 
@@ -523,7 +537,34 @@ public class MainFrame extends JFrame {
 		this.panelOutput.add(gifOutput);
 
 	}
-
+	
+	private void setMediaInfo(){
+		this.panelMediaInfo = new JPanel();
+		this.panelMediaInfo.setLayout(new GridLayout(2,5));
+		
+		fotmat=new JLabel("format");
+		patchJLabel=new JLabel("patch");
+		width=new JLabel("width");
+		height=new JLabel("height");
+		ratio=new JLabel("ratio");
+		frameRate=new JLabel("frameRate");
+		bitRate=new JLabel("bitRate");
+		audioBitrate=new JLabel("audioBitRate");
+		channels=new JLabel("channels");
+		duration=new JLabel("duration");
+		
+		panelMediaInfo.add(patchJLabel);
+		panelMediaInfo.add(fotmat);
+		panelMediaInfo.add(width);
+		panelMediaInfo.add(height);
+		panelMediaInfo.add(ratio);
+		panelMediaInfo.add(frameRate);
+		panelMediaInfo.add(bitRate);
+		panelMediaInfo.add(audioBitrate);
+		panelMediaInfo.add(channels);
+		panelMediaInfo.add(duration);
+		}
+	
 	private void setFileChooser() {
 		this.panelFileChooser = new JPanel();
 		borderString = "Set file or patch";
@@ -542,7 +583,7 @@ public class MainFrame extends JFrame {
 			public void actionPerformed(ActionEvent ev) {
 				// TODO Auto-generated method stub
 				patchChooser = new JFileChooser();
-				fileFilter= new ExtensionFileFilter("Avi, mpg,jpg,gif,",new String []{"AVI","MPG","JPG","BMP","GIF","JPEG"});
+				fileFilter= new ExtensionFileFilter("avi, mpg,jpg,gif,bmp",new String []{"AVI","MPG","JPG","BMP","GIF","JPEG"});
 				patchChooser.setFileFilter(fileFilter);
 				patchChooser
 						.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
