@@ -16,6 +16,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
 import java.util.Hashtable;
+import java.util.regex.Matcher;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -40,6 +41,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import org.omg.CORBA.PRIVATE_MEMBER;
+
+import com.sun.org.apache.xalan.internal.xsltc.compiler.Pattern;
 
 import uj.edu.pl.gui.actionlisteners.ActionLColorSpace;
 import uj.edu.pl.gui.actionlisteners.ActionLConvert;
@@ -576,7 +579,8 @@ public class MainFrame extends JFrame {
 		fileChooserBut = new JButton("Chosee file");
 		filePatch = new JLabel("None");
 		filePatch.setToolTipText("Patch to source");
-
+		Pattern p;
+		Matcher m;
 		fileChooserBut.addActionListener(new ActionListener() {
 
 			@Override
@@ -586,16 +590,25 @@ public class MainFrame extends JFrame {
 				fileFilter= new ExtensionFileFilter("avi, mpg,jpg,gif,bmp",new String []{"AVI","MPG","JPG","BMP","GIF","JPEG"});
 				patchChooser.setFileFilter(fileFilter);
 				patchChooser
-						.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+						.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				patchChooser.setDialogTitle("Choose a file");
 				int returnValue = patchChooser.showOpenDialog(null);
 				if (returnValue == patchChooser.APPROVE_OPTION) {
 					File selectedFile = patchChooser.getSelectedFile();
 					System.out.println(selectedFile.getName());
 				}
-				filePatch.setText(patchChooser.getSelectedFile()
-						.getAbsolutePath());
+				
+				if (patchChooser.getSelectedFile().getAbsolutePath()!=null){
+					String filePatchString = patchChooser.getSelectedFile().getAbsolutePath(); 
+					if(filePatchString.matches(".+\\.(jpg|bmp|gif)$"))System.out.println("file graphic");
+					if(filePatchString.matches(".+\\.(avi|mpg)$"))System.out.println("file movie");;
+					System.out.println("NIemanullla");
+				filePatch.setText(patchChooser.getSelectedFile().getAbsolutePath());
+				
+				
+				
 				borderString = patchChooser.getSelectedFile().getAbsolutePath();
+				}
 				panelFileChooser.setBorder(BorderFactory.createCompoundBorder(
 						BorderFactory.createTitledBorder(borderString),
 						BorderFactory.createEmptyBorder(5, 5, 5, 5)));
