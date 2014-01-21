@@ -107,8 +107,8 @@ public class MainFrame extends JFrame {
 	private JLabel statusLabel;
 		
 	//Napisy do panelMediaInfo
-	private JLabel patchJLabel;
-	private JLabel fotmat;
+	private JLabel patch;
+	private JLabel format;
 	private JLabel bitRate;
 	private JLabel frameRate;
 	private JLabel width;
@@ -552,8 +552,8 @@ public class MainFrame extends JFrame {
 		this.panelMediaInfo.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createTitledBorder(borderString),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-		fotmat=new JLabel("format");
-		patchJLabel=new JLabel("patch");
+		format=new JLabel("format");
+		patch=new JLabel("None file was choosen");
 		width=new JLabel("width");
 		height=new JLabel("height");
 		ratio=new JLabel("ratio");
@@ -562,7 +562,7 @@ public class MainFrame extends JFrame {
 		audioBitrate=new JLabel("audioBitRate");
 		channels=new JLabel("channels");
 		duration=new JLabel("duration");
-		fotmat.setVisible(false);
+		format.setVisible(false);
 		width.setVisible(false);
 		height.setVisible(false);
 		ratio.setVisible(false);
@@ -571,8 +571,8 @@ public class MainFrame extends JFrame {
 		audioBitrate.setVisible(false);
 		channels.setVisible(false);
 		duration.setVisible(false);
-		panelMediaInfo.add(patchJLabel);
-		panelMediaInfo.add(fotmat);
+		panelMediaInfo.add(patch);
+		panelMediaInfo.add(format);
 		panelMediaInfo.add(width);
 		panelMediaInfo.add(height);
 		panelMediaInfo.add(ratio);
@@ -616,11 +616,25 @@ public class MainFrame extends JFrame {
 				
 				if (patchChooser.getSelectedFile().getAbsolutePath()!=null){
 					String filePatchString = patchChooser.getSelectedFile().getAbsolutePath(); 
+					MainFrame.this.patch.setText(filePatchString);
+					patch.setVisible(true);
 					if(filePatchString.matches(".+\\.(jpg|bmp|gif)$")){
 						System.out.println("file graphic");
 						ImageInfo info = new ImageInfo(filePatchString);
 						MainFrame.this.width.setText(Integer.toString(info.getWidth()));
 						MainFrame.this.height.setText(Integer.toString(info.getHeight()));
+						
+						format.setVisible(false);
+						width.setVisible(true);
+						height.setVisible(true);
+						ratio.setVisible(false);
+						frameRate.setVisible(false);
+						bitRate.setVisible(false);
+						audioBitrate.setVisible(false);
+						channels.setVisible(false);
+						duration.setVisible(false);
+						
+						
 						
 					}
 					if(filePatchString.matches(".+\\.(avi|mpg|mp4)$")){
@@ -631,7 +645,7 @@ public class MainFrame extends JFrame {
 						
 						String format = info.get(MediaInfo.StreamKind.Video, i, "Format",
 								MediaInfo.InfoKind.Text, MediaInfo.InfoKind.Name);
-						fotmat.setText(format);
+						MainFrame.this.format.setText(format);
 						String bitRate2 = info.get(MediaInfo.StreamKind.Video, i, "BitRate",
 								MediaInfo.InfoKind.Text, MediaInfo.InfoKind.Name);
 						bitRate.setText(bitRate2);
@@ -657,7 +671,7 @@ public class MainFrame extends JFrame {
 								MediaInfo.InfoKind.Text, MediaInfo.InfoKind.Name);
 						MainFrame.this.duration.setText(duration);
 						
-						MainFrame.this.fotmat.setVisible(true);
+						MainFrame.this.format.setVisible(true);
 						MainFrame.this.width.setVisible(true);
 						MainFrame.this.height.setVisible(true);
 						MainFrame.this.ratio.setVisible(true);
