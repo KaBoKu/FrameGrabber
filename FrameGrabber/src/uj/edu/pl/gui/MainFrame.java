@@ -66,6 +66,7 @@ import uj.edu.pl.gui.actionlisteners.ActionLjpgSource;
 import uj.edu.pl.gui.actionlisteners.ActionLmpgOutput;
 import uj.edu.pl.gui.actionlisteners.ItemStateListinerTButton;
 import uj.edu.pl.gui.state.threads.MonitorSOG;
+import uj.edu.pl.imageinfo.ImageInfo;
 import uj.edu.pl.mediainfo.MediaInfo;
 
 public class MainFrame extends JFrame {
@@ -561,7 +562,15 @@ public class MainFrame extends JFrame {
 		audioBitrate=new JLabel("audioBitRate");
 		channels=new JLabel("channels");
 		duration=new JLabel("duration");
-		
+		fotmat.setVisible(false);
+		width.setVisible(false);
+		height.setVisible(false);
+		ratio.setVisible(false);
+		frameRate.setVisible(false);
+		bitRate.setVisible(false);
+		audioBitrate.setVisible(false);
+		channels.setVisible(false);
+		duration.setVisible(false);
 		panelMediaInfo.add(patchJLabel);
 		panelMediaInfo.add(fotmat);
 		panelMediaInfo.add(width);
@@ -576,7 +585,7 @@ public class MainFrame extends JFrame {
 	
 	private void setFileChooser() {
 		this.panelFileChooser = new JPanel();
-		borderString = "Set file or patch";
+		borderString = "File Info";
 		this.panelFileChooser.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createTitledBorder(borderString),
 				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
@@ -585,8 +594,7 @@ public class MainFrame extends JFrame {
 		fileChooserBut = new JButton("Chosee file");
 		filePatch = new JLabel("None");
 		filePatch.setToolTipText("Patch to source");
-		Pattern p;
-		Matcher m;
+		
 		info = new MediaInfo();
 		
 		fileChooserBut.addActionListener(new ActionListener() {
@@ -608,7 +616,13 @@ public class MainFrame extends JFrame {
 				
 				if (patchChooser.getSelectedFile().getAbsolutePath()!=null){
 					String filePatchString = patchChooser.getSelectedFile().getAbsolutePath(); 
-					if(filePatchString.matches(".+\\.(jpg|bmp|gif)$"))System.out.println("file graphic");
+					if(filePatchString.matches(".+\\.(jpg|bmp|gif)$")){
+						System.out.println("file graphic");
+						ImageInfo info = new ImageInfo(filePatchString);
+						MainFrame.this.width.setText(Integer.toString(info.getWidth()));
+						MainFrame.this.height.setText(Integer.toString(info.getHeight()));
+						
+					}
 					if(filePatchString.matches(".+\\.(avi|mpg|mp4)$")){
 						System.out.println("file movie");
 						File file = new File(filePatchString);
@@ -643,6 +657,15 @@ public class MainFrame extends JFrame {
 								MediaInfo.InfoKind.Text, MediaInfo.InfoKind.Name);
 						MainFrame.this.duration.setText(duration);
 						
+						MainFrame.this.fotmat.setVisible(true);
+						MainFrame.this.width.setVisible(true);
+						MainFrame.this.height.setVisible(true);
+						MainFrame.this.ratio.setVisible(true);
+						MainFrame.this.frameRate.setVisible(true);
+						MainFrame.this.bitRate.setVisible(true);
+						MainFrame.this.audioBitrate.setVisible(true);
+						MainFrame.this.channels.setVisible(true);
+						MainFrame.this.duration.setVisible(true);
 						
 						System.out.println(format);
 						System.out.println(bitRate);
