@@ -1,4 +1,4 @@
-package uj.edu.pl.gui;
+package uj.edu.pl.imageinfo;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -21,6 +21,7 @@ public class ImageInfo {
 			bimg = ImageIO.read(new File(this.filename));
 			width = bimg.getWidth();
 			height = bimg.getHeight();
+			System.out.println(bimg.getPropertyNames());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
